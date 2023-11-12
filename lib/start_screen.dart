@@ -84,27 +84,78 @@ class _StartButtonState extends State<StartButton> {
         isScrollControlled: true,
         builder: (context) => SizedBox(
           height: 785,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          // Cancel and Done Buttons
+          child:
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-              TextButton(
-                onPressed: (){
-                    // Stuff to cancel
-                },
-                child: const Text('Cancel', style: TextStyle(fontSize: 17, 
-              fontWeight: FontWeight.normal),),
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextButton(
+                  onPressed: (){
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Cancel', style: TextStyle(fontSize: 17, 
+                  fontWeight: FontWeight.normal
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('Done', style: TextStyle(fontSize: 17, 
+                  fontWeight: FontWeight.bold
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Done', style: TextStyle(fontSize: 17, 
-              fontWeight: FontWeight.bold),),
-              ),
-          ],
-        ),
-      )
-    );
-  }
+              Align(
+                alignment: Alignment.center,
+                child: SizedBox(
+                  width: 350,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.all(3),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.transparent)
+                        ),
+                        filled: true,
+                        fillColor: const Color.fromARGB(255, 44, 44, 46),
+                        hintStyle: const TextStyle(color:Color.fromARGB(255, 99, 99, 102)),
+                        hintText: "Title"
+                      )
+                    ),
+                  ),
+                ),
+                Align(
+                alignment: Alignment.center,
+                child: SizedBox(
+                  width: 350,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.all(3),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        ),
+                        filled: true,
+                        fillColor: const Color.fromARGB(255, 44, 44, 46),
+                        hintStyle: const TextStyle(color:Color.fromARGB(255, 99, 99, 102)),
+                        hintText: "Time"
+                      )
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      }
 }
