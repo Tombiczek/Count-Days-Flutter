@@ -75,15 +75,36 @@ class _StartButtonState extends State<StartButton> {
   }
     Future _bottomSheetPopUp(BuildContext context){
       return showModalBottomSheet(
+        
         context: context,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(12))),
         backgroundColor: const Color.fromARGB(255, 28, 28, 30),
-        isDismissible: true, // only for now, letter add a button 'done' and set to false
+        isDismissible: false,
         isScrollControlled: true,
-        builder: (context) => Container(
-          height: 790,
-        )
-      );
-    }
+        builder: (context) => SizedBox(
+          height: 785,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+              TextButton(
+                onPressed: (){
+                    // Stuff to cancel
+                },
+                child: const Text('Cancel', style: TextStyle(fontSize: 17, 
+              fontWeight: FontWeight.normal),),
+              ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Done', style: TextStyle(fontSize: 17, 
+              fontWeight: FontWeight.bold),),
+              ),
+          ],
+        ),
+      )
+    );
+  }
 }
