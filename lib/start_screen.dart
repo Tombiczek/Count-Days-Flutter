@@ -88,7 +88,7 @@ class _StartButtonState extends State<StartButton> {
           child:
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -114,10 +114,18 @@ class _StartButtonState extends State<StartButton> {
                   ),
                 ],
               ),
-              Align(
-                alignment: Alignment.center,
-                child: SizedBox(
+              const SizedBox(
+                height: 80,
+                child: Text('Edytuj licznik', style: TextStyle(
+                  fontSize: 32, 
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white
+                  )
+                ),
+              ),
+              SizedBox(
                   width: 350,
+                  height: 90,
                   child: TextField(
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.all(3),
@@ -134,25 +142,21 @@ class _StartButtonState extends State<StartButton> {
                       )
                     ),
                   ),
-                ),
-                Align(
-                alignment: Alignment.center,
-                child: SizedBox(
-                  width: 350,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.all(3),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        ),
-                        filled: true,
-                        fillColor: const Color.fromARGB(255, 44, 44, 46),
-                        hintStyle: const TextStyle(color:Color.fromARGB(255, 99, 99, 102)),
-                        hintText: "Time"
-                      )
-                    ),
+              SizedBox(
+                width: 350,
+                child: TextField(
+                  decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.all(3),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      ),
+                      filled: true,
+                      fillColor: const Color.fromARGB(255, 44, 44, 46),
+                      hintStyle: const TextStyle(color:Color.fromARGB(255, 99, 99, 102)),
+                      hintText: "Time"
+                    )
                   ),
-                )
+                ),
               ],
             ),
           ),
