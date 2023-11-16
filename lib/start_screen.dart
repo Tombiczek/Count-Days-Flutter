@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/cupertino.dart';
 
 class StartScreen extends StatelessWidget{
   const StartScreen({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +40,19 @@ class StartButton extends StatefulWidget {
 }
 
 class _StartButtonState extends State<StartButton> {
+  final TextEditingController _textEditingController = TextEditingController();
+  DateTime date = DateTime(2016, 10, 26);
+  String globalTitle = '';
+
+
+
+  @override
+  void dispose(){
+    _textEditingController.dispose();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -73,93 +88,109 @@ class _StartButtonState extends State<StartButton> {
       )
     );
   }
-    Future _bottomSheetPopUp(BuildContext context){
-      return showModalBottomSheet(
-        
-        context: context,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(12))),
-        backgroundColor: const Color.fromARGB(255, 28, 28, 30),
-        isDismissible: false,
-        isScrollControlled: true,
-        builder: (context) => SizedBox(
-          height: 785,
-          // Cancel and Done Buttons
-          child:
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TextButton(
-                  onPressed: (){
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('Cancel', style: TextStyle(fontSize: 17, 
-                  fontWeight: FontWeight.normal
+  Future _bottomSheetPopUp(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(12))),
+      backgroundColor: const Color.fromARGB(255, 28, 28, 30),
+      isDismissible: false,
+      isScrollControlled: true,
+      builder: (context) => SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: SizedBox(
+            height: 785, // Adjust the height as needed
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text(
+                        'Cancel',
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.normal,
+                        ),
                       ),
                     ),
-                  ),
-                  TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('Done', style: TextStyle(fontSize: 17, 
-                  fontWeight: FontWeight.bold
+                    TextButton(
+                      onPressed: () {
+                        globalTitle = _textEditingController.text;
+                        Navigator.of(context).pop();
+                        _textEditingController.clear();
+                      },
+                      child: const Text(
+                        'Done',
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 80,
-                child: Text('Edytuj licznik', style: TextStyle(
-                  fontSize: 32, 
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white
-                  )
+                  ],
                 ),
-              ),
-              SizedBox(
+                const SizedBox(
+                  height: 80,
+                  child: Text(
+                    'Edytuj licznik',
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                SizedBox(
                   width: 350,
-                  height: 90,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.all(3),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        ),
-                        focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent)
-                        ),
-                        filled: true,
-                        fillColor: const Color.fromARGB(255, 44, 44, 46),
-                        hintStyle: const TextStyle(color:Color.fromARGB(255, 99, 99, 102)),
-                        hintText: "Title"
-                      )
+                  height: 40,
+                    child: CupertinoTextField(
+                      controller: _textEditingController,
+                      placeholder: 'Title',
+                      placeholderStyle: const TextStyle(
+                        color: Color.fromARGB(255, 153, 153, 160)
+                      ),
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 44, 44, 46),
+                        borderRadius: BorderRadius.circular(12)
+                      ),
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                ),
+                SizedBox(
+                  height: 200,
+                  width: 360,
+                  child: CupertinoTheme(
+                    data: const CupertinoThemeData(
+                      brightness: Brightness.dark),
+                    child: CupertinoDatePicker(
+                      minimumDate: DateTime.now(),
+                      initialDateTime: DateTime.now(),
+                      mode: CupertinoDatePickerMode.date,
+                      onDateTimeChanged: (DateTime newDate) {
+                        setState(() => date = newDate);
+                      },
                     ),
                   ),
-              SizedBox(
-                width: 350,
-                child: TextField(
-                  decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.all(3),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      ),
-                      filled: true,
-                      fillColor: const Color.fromARGB(255, 44, 44, 46),
-                      hintStyle: const TextStyle(color:Color.fromARGB(255, 99, 99, 102)),
-                      hintText: "Time"
-                    )
-                  ),
                 ),
+                SizedBox(
+                  height: 200,
+                  child: Text(globalTitle, style: const TextStyle(color: Colors.white),)
+                )
               ],
             ),
           ),
-        );
-      }
+        ),
+      ),
+    );
+  }
 }
