@@ -2,9 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 
-class StartScreen extends StatelessWidget{
-  const StartScreen({super.key});
-  
+class StartScreen extends StatefulWidget{
+
+
+  const StartScreen({Key? key}) : super(key: key);
+
+  @override
+  State<StartScreen> createState() => _StartScreenState();
+}
+
+class _StartScreenState extends State<StartScreen> {
+  bool showBigButton = true;
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +27,76 @@ class StartScreen extends StatelessWidget{
             statusBarBrightness: Brightness.dark,
           ),
         ),
-      body: const Center(
-        child:
-        StartButton(
-          width: 350,
-          height: 630,),
-      )
+      body: Center(
+        child: showBigButton ? 
+          StartButton(width: 350, height: 630, onShowBigButtonChanged: (newValue) {
+            setState(() {showBigButton = newValue;});},): 
+            Timer(onShowBigButtonChanged: (newValue) {
+            setState(() {showBigButton = newValue;});},)
+            )
+    );
+  }
+}
+
+class Timer extends StatefulWidget {
+  final Function(bool) onShowBigButtonChanged;
+
+  const Timer({super.key, required this.onShowBigButtonChanged});
+  
+  @override
+  State<StatefulWidget> createState() => _Timer();
+}
+
+class _Timer extends State<Timer> {
+  @override
+  Widget build(BuildContext context) {
+   return Scaffold(
+      backgroundColor:const Color.fromARGB(255, 28, 28, 30),
+      body: SizedBox(
+        child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Cancel',
+                      style: TextStyle(
+                        fontSize: 17,
+                        color: Colors.transparent,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        widget.onShowBigButtonChanged(true);
+                      },
+                      child: const Text(
+                        'Edit',
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 80,
+                  child: Text(
+                    'Tytuł',
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ]
+        ),
+      ),
     );
   }
 }
@@ -32,8 +104,9 @@ class StartScreen extends StatelessWidget{
 class StartButton extends StatefulWidget {
   final double width;
   final double height;
+  final Function(bool) onShowBigButtonChanged;
 
-  const StartButton({super.key, required this.height, required this.width});
+  const StartButton({super.key, required this.height, required this.width, required this.onShowBigButtonChanged,});
 
   @override
   State<StartButton> createState() => _StartButtonState();
@@ -114,6 +187,8 @@ class _StartButtonState extends State<StartButton> {
                     TextButton(
                       onPressed: () {
                         Navigator.of(context).pop();
+                        _textEditingController.clear();
+                        globalTitle = '';
                       },
                       child: const Text(
                         'Cancel',
@@ -128,6 +203,7 @@ class _StartButtonState extends State<StartButton> {
                         globalTitle = _textEditingController.text;
                         Navigator.of(context).pop();
                         _textEditingController.clear();
+                        widget.onShowBigButtonChanged(false);
                       },
                       child: const Text(
                         'Done',
@@ -182,10 +258,6 @@ class _StartButtonState extends State<StartButton> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 200,
-                  child: Text(globalTitle, style: const TextStyle(color: Colors.white),)
-                )
               ],
             ),
           ),
