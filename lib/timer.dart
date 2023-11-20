@@ -6,8 +6,10 @@ class Timer extends StatefulWidget {
   final Function(bool) onShowBigButtonChanged;
   final Function(String) updateDisplayedTitle;
   final String globalTitle;
+  final Function(DateTime) updateDate;
+  final DateTime dateInit;
   const Timer({super.key, required this.onShowBigButtonChanged, required this.updateDisplayedTitle,
-  required this.globalTitle,});
+  required this.globalTitle, required this.updateDate, required this.dateInit});
   
   @override
   State<StatefulWidget> createState() => _Timer();
@@ -16,7 +18,6 @@ class Timer extends StatefulWidget {
 class _Timer extends State<Timer> {
 
   final TextEditingController _textEditingController = TextEditingController();
-  DateTime date = DateTime(2016, 10, 26);
 
 
   @override
@@ -33,6 +34,8 @@ class _Timer extends State<Timer> {
   @override
   Widget build(BuildContext context) {
     String globalTitle = widget.globalTitle;
+    DateTime dateInit = widget.dateInit;
+    String formattedDate = dateInit.toString();
    return Scaffold(
       backgroundColor:const Color.fromARGB(255, 28, 28, 30),
       body: SizedBox(
@@ -68,9 +71,19 @@ class _Timer extends State<Timer> {
                 ),
                 SizedBox(
                   height: 80,
-                  child: Text(globalTitle,
+                  child: Text(globalTitle.isEmpty ? '-' : globalTitle,
                     style: const TextStyle(
                       fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 80,
+                  child: Text(formattedDate,
+                    style: const TextStyle(
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
@@ -84,6 +97,7 @@ class _Timer extends State<Timer> {
   Future _bottomSheetPopUp(BuildContext context) {
     String globalTitle = widget.globalTitle;
     _textEditingController.text = globalTitle;
+    DateTime dateInit = widget.dateInit;
     return showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(
@@ -145,7 +159,7 @@ class _Timer extends State<Timer> {
                     ),
                   ),
                 ),
-                SizedBox(  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                SizedBox(
                   width: 350,
                   height: 40,
                     child: CupertinoTextField(
@@ -168,11 +182,12 @@ class _Timer extends State<Timer> {
                     data: const CupertinoThemeData(
                       brightness: Brightness.dark),
                     child: CupertinoDatePicker(
-                      minimumDate: DateTime.now(),
-                      initialDateTime: DateTime.now(),
+                      minimumDate: DateTime(DateTime.now().year, DateTime.now().month, 
+                      DateTime.now().day + 1, 0, 0, 0),
+                      initialDateTime: dateInit,
                       mode: CupertinoDatePickerMode.date,
                       onDateTimeChanged: (DateTime newDate) {
-                        setState(() => date = newDate);
+                        setState(() => widget.updateDate(newDate));
                       },
                     ),
                   ),
@@ -185,6 +200,8 @@ class _Timer extends State<Timer> {
                     onTap: () {
                       widget.onShowBigButtonChanged(true);
                       Navigator.of(context).pop();
+                      widget.updateDate(DateTime(DateTime.now().year, DateTime.now().month, 
+                      DateTime.now().day + 1, 0, 0, 0));
                     },
                   child: OutlinedButton(
                     onPressed: null,

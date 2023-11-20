@@ -15,10 +15,18 @@ class StartScreen extends StatefulWidget{
 class _StartScreenState extends State<StartScreen> {
   bool showBigButton = true;
   String globalTitle = '';
+  DateTime dateInit = DateTime(DateTime.now().year, DateTime.now().month, 
+                      DateTime.now().day + 1, 0, 0, 0);
 
   void updateDisplayedTitle(String newTitle) {
     setState(() {
       globalTitle = newTitle;
+    });
+  }
+
+  void updateDate(DateTime newDate) {
+    setState(() {
+      dateInit = newDate;
     });
   }
 
@@ -38,10 +46,11 @@ class _StartScreenState extends State<StartScreen> {
       body: Center(
         child: showBigButton ? 
           StartButton(width: 350, height: 630, onShowBigButtonChanged: (newValue) {
-            setState(() {showBigButton = newValue;});},updateDisplayedTitle: updateDisplayedTitle,) :
+            setState(() {showBigButton = newValue;});},updateDisplayedTitle: updateDisplayedTitle,
+            updateDate: updateDate, dateInit: dateInit,) :
             Timer(onShowBigButtonChanged: (newValue) {
             setState(() {showBigButton = newValue;});},updateDisplayedTitle: updateDisplayedTitle,
-                  globalTitle: globalTitle,)
+                  globalTitle: globalTitle, updateDate: updateDate, dateInit: dateInit,)
             )
     );
   }

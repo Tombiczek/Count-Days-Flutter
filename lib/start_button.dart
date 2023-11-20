@@ -8,10 +8,11 @@ class StartButton extends StatefulWidget {
   final double height;
   final Function(bool) onShowBigButtonChanged;
   final Function(String) updateDisplayedTitle;
-
+  final Function(DateTime) updateDate;
+  final DateTime dateInit;
   const StartButton({super.key, required this.height, required this.width, 
   required this.onShowBigButtonChanged, 
-  required this.updateDisplayedTitle});
+  required this.updateDisplayedTitle, required this.updateDate, required this.dateInit});
 
   @override
   State<StartButton> createState() => _StartButtonState();
@@ -19,7 +20,7 @@ class StartButton extends StatefulWidget {
 
 class _StartButtonState extends State<StartButton> {
   final TextEditingController _textEditingController = TextEditingController();
-  DateTime date = DateTime(2016, 10, 26);
+  
 
 
   @override
@@ -65,6 +66,7 @@ class _StartButtonState extends State<StartButton> {
     );
   }
   Future _bottomSheetPopUp(BuildContext context) {
+    DateTime dateInit = widget.dateInit;
     return showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(
@@ -150,11 +152,11 @@ class _StartButtonState extends State<StartButton> {
                     data: const CupertinoThemeData(
                       brightness: Brightness.dark),
                     child: CupertinoDatePicker(
-                      minimumDate: DateTime.now(),
-                      initialDateTime: DateTime.now(),
+                      minimumDate: dateInit,
+                      initialDateTime: dateInit,
                       mode: CupertinoDatePickerMode.date,
                       onDateTimeChanged: (DateTime newDate) {
-                        setState(() => date = newDate);
+                        setState(() => widget.updateDate(newDate));
                       },
                     ),
                   ),
