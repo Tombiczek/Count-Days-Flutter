@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:licznik_v1/countdown_widget.dart';
 
 
 class Timer extends StatefulWidget {
@@ -16,7 +17,6 @@ class Timer extends StatefulWidget {
 }
 
 class _Timer extends State<Timer> {
-
   final TextEditingController _textEditingController = TextEditingController();
 
 
@@ -35,7 +35,7 @@ class _Timer extends State<Timer> {
   Widget build(BuildContext context) {
     String globalTitle = widget.globalTitle;
     DateTime dateInit = widget.dateInit;
-    String formattedDate = dateInit.toString();
+    // String formattedDate = dateInit.toString();
    return Scaffold(
       backgroundColor:const Color.fromARGB(255, 28, 28, 30),
       body: SizedBox(
@@ -79,15 +79,20 @@ class _Timer extends State<Timer> {
                     ),
                   ),
                 ),
+                // SizedBox(
+                //   height: 80,
+                //   child: Text(formattedDate,
+                //     style: const TextStyle(
+                //       fontSize: 20,
+                //       fontWeight: FontWeight.bold,
+                //       color: Colors.white,
+                //     ),
+                //   ),
+                // ),
                 SizedBox(
+                  width: 350,
                   height: 80,
-                  child: Text(formattedDate,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
+                  child: CountdownWidget(dateInit: dateInit)
                 ),
               ]
         ),

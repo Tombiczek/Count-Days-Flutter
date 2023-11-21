@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:licznik_v1/timer.dart';
+import 'package:licznik_v1/timer_screen.dart';
 import 'package:licznik_v1/start_button.dart';
 
 class StartScreen extends StatefulWidget{
