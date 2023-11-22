@@ -45,9 +45,9 @@ class _CountdownWidgetState extends State<CountdownWidget> {
           const SizedBox(height: 20.0),
           Text(
             "${remainingTime.inDays}d "
-            "${(remainingTime.inHours % 24).toString().padLeft(2, '0')}h "
-            "${(remainingTime.inMinutes % 60).toString().padLeft(2, '0')}m "
-            "${(remainingTime.inSeconds % 60).toString().padLeft(2, '0')}s",
+            "${(remainingTime.inHours % 24)}h "
+            "${(remainingTime.inMinutes % 60)}m "
+            "${(remainingTime.inSeconds % 60)}s",
             style: const TextStyle(
               fontSize: 24.0,
               fontWeight: FontWeight.bold,
