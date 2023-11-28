@@ -15,12 +15,12 @@ class Timer extends StatefulWidget {
   
   @override
   State<StatefulWidget> createState() => _Timer();
+  
 }
 
 class _Timer extends State<Timer> {
   final TextEditingController _textEditingController = TextEditingController();
-
-
+  
   @override
   void dispose(){
     _textEditingController.dispose();
@@ -31,6 +31,8 @@ class _Timer extends State<Timer> {
   void initState() {
     super.initState();
   }
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +61,9 @@ class _Timer extends State<Timer> {
                     ),
                     TextButton(
                       onPressed: () {
-                        _bottomSheetPopUp(context);
+                        _bottomSheetPopUp(context, CountdownWidget(
+                                  dateInit: dateInit,
+                                  onStopCountdown: () {},));
                       },
                       child: const Text(
                         'Edit',
@@ -84,14 +88,16 @@ class _Timer extends State<Timer> {
                 SizedBox(
                   width: 350,
                   height: 80,
-                  child: CountdownWidget(dateInit: dateInit)
+                  child: CountdownWidget(dateInit: dateInit, onStopCountdown: (){
+                    // do something when stopped
+                  },)
                 ),
               ]
         ),
       ),
     );
   }
-  Future _bottomSheetPopUp(BuildContext context) {
+  Future _bottomSheetPopUp(BuildContext context, CountdownWidget countdownWidget) {
     String globalTitle = widget.globalTitle;
     _textEditingController.text = globalTitle;
     DateTime dateInit = widget.dateInit;
@@ -195,10 +201,11 @@ class _Timer extends State<Timer> {
                   child: InkWell(
                     enableFeedback: false,
                     onTap: () {
+                      countdownWidget.stopCountdown(); // here it doesnt work
                       widget.onShowBigButtonChanged(true);
-                      Navigator.of(context).pop();
                       widget.updateDate(DateTime(DateTime.now().year, DateTime.now().month, 
                       DateTime.now().day + 1, 0, 0, 0));
+                      Navigator.of(context).pop();
                     },
                   child: OutlinedButton(
                     onPressed: null,

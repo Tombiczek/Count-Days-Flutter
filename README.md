@@ -1,16 +1,6 @@
-# licznik_v1
+# Licznik App in Dart
+Licznik is Polish for counter. <br>
+The main aim of this small project is to make a very simple app that counts time to o given date.
 
-A new Flutter project.
+## What is this?
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

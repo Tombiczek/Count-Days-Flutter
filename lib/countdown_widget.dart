@@ -5,7 +5,12 @@ import 'package:flutter/material.dart';
 
 class CountdownWidget extends StatefulWidget {
   final DateTime dateInit;
-  const CountdownWidget({super.key,required this.dateInit});
+  final Function() onStopCountdown;
+  const CountdownWidget({super.key,required this.dateInit, required this.onStopCountdown});
+
+    void stopCountdown() {
+    (_countdownWidgetKey.currentState)?.stopCountdown();
+  }
 
   @override
   State<StatefulWidget> createState() => _CountdownWidgetState();
@@ -13,6 +18,14 @@ class CountdownWidget extends StatefulWidget {
 
 class _CountdownWidgetState extends State<CountdownWidget> {
   Duration remainingTime = const Duration(hours: 0);
+  late Timer _timer;
+
+  void stopCountdown() {
+    if (_timer.isActive) {
+      _timer.cancel();
+      widget.onStopCountdown(); // Notify the parent when the countdown is stopped
+    }
+  }
 
   @override
   void initState() {
@@ -20,15 +33,22 @@ class _CountdownWidgetState extends State<CountdownWidget> {
 
     remainingTime = widget.dateInit.difference(DateTime.now());
 
-    Timer.periodic(const Duration(seconds: 1), (Timer timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) {
       setState(() {
         remainingTime = widget.dateInit.difference(DateTime.now());
       });
       if (remainingTime.isNegative) {
         timer.cancel();
+        stopCountdown();
         // Timer completed
       }
     });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel(); // Cancel the timer in dispose
+    super.dispose();
   }
 
 @override
@@ -59,4 +79,5 @@ class _CountdownWidgetState extends State<CountdownWidget> {
     );
   }
 }
+GlobalKey<_CountdownWidgetState> _countdownWidgetKey = GlobalKey();
 
