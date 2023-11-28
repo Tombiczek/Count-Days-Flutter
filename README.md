@@ -10,6 +10,8 @@
     + [Settings](#settings)
   * [Install](#install)
   * [Contributing](#contributing)
+  * [Project Status](#project-status)
+  * [Room for Improvement](#room-for-improvement)
   * [License](#license)
 
 # Licznik App in Dart
@@ -66,16 +68,17 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 <!-- Please make sure to update tests as appropriate. -->
 
 ## Project Status
-Project is: completed but other features will be rolling out in coming releases.
+**Project Status:** Completed, but additional features will be rolling out in the coming releases.
 
 ## Room for Improvement
 Room for improvement:
-  * Add a reasonable maximum date that can be set, minimazing the risk of TextField overflow
-  * Tests needs to be added
+  * Add a reasonable maximum date that can be set, minimizing the risk of TextField overflow.
+  * Tests need to be added.
 
-To do:
-  * Implement settings page by adding opton of language change and theme change
-  * Implement percent widget which will allow user to see how much time has already passed
+To-do:
+  * Implement a settings page by adding options for language change and theme change.
+  * Implement a percent widget that will allow users to see how much time has already passed.
+
 
 ## License
 [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/)
