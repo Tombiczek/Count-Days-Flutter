@@ -32,11 +32,11 @@ The only feature of this app is counting to a given date, which has to be in the
 
 ### Start Screen
 To add the timer, you only have to tap somewhere on the screen.<br>
-<img src="screenshots/start_screen.png" width="200"/>
+<img src="screenshots/start_screen.png" width="300"/>
 
 ### Add Timer
 After initially tapping on the screen, you will be prompted with a bottom sheet pop-up that will enable you to choose the date your counter will be set to. Clicking cancel will get you back to the start screen.<br>
-<img src="screenshots/add_timer.png" width="200"/>
+<img src="screenshots/add_timer.png" width="300"/>
 
 ### Timer Set
 After adding the first timer without setting the timer, you will get a default name that represents the date you have chosen. To edit the timer, click edit.<br>
@@ -47,15 +47,15 @@ After adding the first timer without setting the timer, you will get a default n
 ### Edit Timer
 After clicking edit the timer, you will be again prompted with a bottom sheet pop-up, allowing you to delete the timer, change the date or title. In this example, I will be adding a title. <br>
 Deleting the timer will get you back to the start screen. <br>
-<img src="screenshots/edit_timer.png" width="200"/>
+<img src="screenshots/edit_timer.png" width="300"/>
 
 ### Timer Set With Title
 Here we can see that the title was set. <br>
-<img src="screenshots/timer_w_title.png" width="200"/>
+<img src="screenshots/timer_w_title.png" width="300"/>
 
 ### Settings
 The setting page is not yet implemented.<br>
-<img src="screenshots/Settings.png" width="200"/>
+<img src="screenshots/Settings.png" width="300"/>
 
 ## Install
 To install the app on your iPhone, you will need a computer running MacOS with installed Flutter, CocoaPods, and Xcode. Additionally, you will need an Apple ID or an Apple Developer account. More detailed instructions on how to do it are [here](https://www.geeksforgeeks.org/how-to-install-flutter-app-on-ios/).
