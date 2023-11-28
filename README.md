@@ -31,30 +31,30 @@ And tested on iPhone 15 Pro (iOS 17.0).
 The only feature of this app is counting to a given date, which has to be in the future. You can add only one timer, and you are able to give it a name. If the title field is left empty, there will be given a default name to the timer representing a date to which the countdown is set.
 
 ### Start Screen
-To add the timer, you only have to tap somewhere on the screen.
+To add the timer, you only have to tap somewhere on the screen.<br>
 <img src="screenshots/start_screen.png" width="200"/>
 
 ### Add Timer
-After initially tapping on the screen, you will be prompted with a bottom sheet pop-up that will enable you to choose the date your counter will be set to. Clicking cancel will get you back to the start screen.
+After initially tapping on the screen, you will be prompted with a bottom sheet pop-up that will enable you to choose the date your counter will be set to. Clicking cancel will get you back to the start screen.<br>
 <img src="screenshots/add_timer.png" width="200"/>
 
 ### Timer Set
-After adding the first timer without setting the timer, you will get a default name that represents the date you have chosen. To edit the timer, click edit.
+After adding the first timer without setting the timer, you will get a default name that represents the date you have chosen. To edit the timer, click edit.<br>
 <img src="screenshots/timer_wout_title.png" width="300"/>
 
 
 
 ### Edit Timer
 After clicking edit the timer, you will be again prompted with a bottom sheet pop-up, allowing you to delete the timer, change the date or title. In this example, I will be adding a title. <br>
-Deleting the timer will get you back to the start screen.
+Deleting the timer will get you back to the start screen. <br>
 <img src="screenshots/edit_timer.png" width="200"/>
 
 ### Timer Set With Title
-Here we can see that the title was set.
+Here we can see that the title was set. <br>
 <img src="screenshots/timer_w_title.png" width="200"/>
 
 ### Settings
-The setting page is not yet implemented.
+The setting page is not yet implemented.<br>
 <img src="screenshots/Settings.png" width="200"/>
 
 ## Install
