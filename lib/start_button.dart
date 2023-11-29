@@ -74,6 +74,7 @@ class _StartButtonState extends State<StartButton> {
       backgroundColor: const Color.fromARGB(255, 28, 28, 30),
       isDismissible: false,
       isScrollControlled: true, // Tu trzeba sprawdzić z telefonem czy nie będzie problemem
+      // TODO: Problem z klawiaturą w tym miejscu
       builder: (context) => SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.only(
