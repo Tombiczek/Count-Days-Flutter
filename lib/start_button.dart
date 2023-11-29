@@ -73,7 +73,7 @@ class _StartButtonState extends State<StartButton> {
         borderRadius: BorderRadius.vertical(top: Radius.circular(12))),
       backgroundColor: const Color.fromARGB(255, 28, 28, 30),
       isDismissible: false,
-      isScrollControlled: true,
+      isScrollControlled: true, // Tu trzeba sprawdzić z telefonem czy nie będzie problemem
       builder: (context) => SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.only(
