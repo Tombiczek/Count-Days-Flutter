@@ -78,7 +78,6 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## Room for Improvement
 Room for improvement:
-  * Add a reasonable maximum date that can be set, minimizing the risk of TextField overflow.
   * Tests need to be added.
 
 To-do:

@@ -91,6 +91,7 @@ class _StartButtonState extends State<StartButton> {
                   children: [
                     TextButton(
                       onPressed: () {
+                        widget.updateDate(dateInit);
                         Navigator.of(context).pop();
                         _textEditingController.clear();
                       },
@@ -155,8 +156,9 @@ class _StartButtonState extends State<StartButton> {
                       minimumDate: dateInit,
                       initialDateTime: dateInit,
                       mode: CupertinoDatePickerMode.date,
-                      onDateTimeChanged: (DateTime newDate) {
-                        setState(() => widget.updateDate(newDate));
+                      onDateTimeChanged:  (DateTime newDate) {
+                        setState(() => (newDate.compareTo(DateTime.now().add(const Duration(days: 36500)))) == -1 ? 
+                        (widget.updateDate(newDate)):(widget.updateDate(DateTime.now().add(const Duration(days: 36500)))));
                       },
                     ),
                   ),

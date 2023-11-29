@@ -125,8 +125,8 @@ class _Timer extends State<Timer> {
                   children: [
                     TextButton(
                       onPressed: () {
-                        Navigator.of(context).pop();
                         _textEditingController.text = globalTitle;
+                        Navigator.of(context).pop();
                       },
                       child: const Text(
                         'Cancel',
@@ -186,7 +186,7 @@ class _Timer extends State<Timer> {
                       brightness: Brightness.dark),
                     child: CupertinoDatePicker(
                       minimumDate: DateTime(DateTime.now().year, DateTime.now().month, 
-                      DateTime.now().day + 1, 0, 0, 0),
+                      DateTime.now().day + 1),
                       initialDateTime: dateInit,
                       mode: CupertinoDatePickerMode.date,
                       onDateTimeChanged: (DateTime newDate) {
@@ -201,7 +201,7 @@ class _Timer extends State<Timer> {
                   child: InkWell(
                     enableFeedback: false,
                     onTap: () {
-                      countdownWidget.stopCountdown(); // here it doesnt work
+                      countdownWidget.stopCountdown();
                       widget.onShowBigButtonChanged(true);
                       widget.updateDate(DateTime(DateTime.now().year, DateTime.now().month, 
                       DateTime.now().day + 1, 0, 0, 0));
