@@ -78,11 +78,12 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## Room for Improvement
 Room for improvement:
-  * Tests need to be added.
+  * Information after the countdown finishes
 
 To-do:
   * Implement a settings page by adding options for language change and theme change.
   * Implement a percent widget that will allow users to see how much time has already passed.
+  * Implement a setting or a different page to allow user see how much time is left to the upcoming holiday, or a weekend.
 
 
 ## License
