@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
@@ -20,7 +21,27 @@ class StartButton extends StatefulWidget {
 
 class _StartButtonState extends State<StartButton> {
   final TextEditingController _textEditingController = TextEditingController();
-  
+
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSavedDate();
+  }
+
+  _loadSavedDate() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? savedDate = prefs.getString('chosen_date');
+    if (savedDate != null && savedDate.isNotEmpty) {
+      DateTime parsedDate = DateTime.parse(savedDate);
+      widget.updateDate(parsedDate);
+    }
+  }
+
+  _saveDate(DateTime chosenDate) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('chosen_date', chosenDate.toIso8601String());
+  }
 
 
   @override
@@ -65,9 +86,9 @@ class _StartButtonState extends State<StartButton> {
       )
     );
   }
-  Future _bottomSheetPopUp(BuildContext context) {
+  Future _bottomSheetPopUp(BuildContext context) async {
     DateTime dateInit = widget.dateInit;
-    return showModalBottomSheet(
+    DateTime? chosenDate = await showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(12))),
@@ -170,5 +191,9 @@ class _StartButtonState extends State<StartButton> {
         ),
       ),
     );
+    if (chosenDate != null) {
+      _saveDate(chosenDate);
+      widget.updateDate(chosenDate);
+    }
   }
 }
