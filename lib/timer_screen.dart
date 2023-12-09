@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:licznik_v1/countdown_widget.dart';
+import 'package:licznik_v1/save_state_utility.dart';
 
 
 class Timer extends StatefulWidget {
@@ -20,7 +21,11 @@ class Timer extends StatefulWidget {
 
 class _Timer extends State<Timer> {
   final TextEditingController _textEditingController = TextEditingController();
-  
+
+    @override
+  void initState() {
+    super.initState();
+  }
   
   @override
   void dispose(){
@@ -28,12 +33,22 @@ class _Timer extends State<Timer> {
     super.dispose();
   }
 
-      @override
-  void initState() {
-    super.initState();
+  Future<void> _saveDateInit(DateTime dateInit) async {
+    await SaveStateUtility.saveDateInit(dateInit);
   }
 
-  
+  Future<void> _saveTitle(String title) async {
+    await SaveStateUtility.saveTitle(title);
+  }
+
+  Future<void> _clearSavedDateInit() async {
+    await SaveStateUtility.clearDateInit();
+  }
+
+  Future<void> _clearSavedTitle() async {
+    await SaveStateUtility.clearTitle();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -141,6 +156,8 @@ class _Timer extends State<Timer> {
                     TextButton(
                       onPressed: () {
                         widget.updateDisplayedTitle(_textEditingController.text);
+                        _saveTitle(_textEditingController.text);
+                        _saveDateInit(dateInit);
                         Navigator.of(context).pop();
                       },
                       child: const Text(
@@ -189,11 +206,13 @@ class _Timer extends State<Timer> {
                     child: CupertinoDatePicker(
                       minimumDate: DateTime(DateTime.now().year, DateTime.now().month, 
                       DateTime.now().day + 1),
+                      maximumDate: DateTime.now().add(const Duration(days: 36500)),
                       initialDateTime: dateInit,
                       mode: CupertinoDatePickerMode.date,
-                      onDateTimeChanged: (DateTime newDate) {
-                        setState(() => widget.updateDate(newDate));
-                      },
+                      onDateTimeChanged:  (DateTime newDate) {
+                        setState((){
+                                    widget.updateDate(newDate);
+                                    });}
                     ),
                   ),
                 ),
@@ -207,6 +226,8 @@ class _Timer extends State<Timer> {
                       widget.onShowBigButtonChanged(true);
                       widget.updateDate(DateTime(DateTime.now().year, DateTime.now().month, 
                       DateTime.now().day + 1, 0, 0, 0));
+                      _clearSavedDateInit();
+                      _clearSavedTitle();
                       Navigator.of(context).pop();
                     },
                   child: OutlinedButton(

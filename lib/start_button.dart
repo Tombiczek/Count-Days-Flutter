@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:licznik_v1/save_state_utility.dart';
 
 
 
@@ -26,21 +26,43 @@ class _StartButtonState extends State<StartButton> {
   @override
   void initState() {
     super.initState();
-    _loadSavedDate();
+    _loadTitle();
+    _loadDateInit();
   }
 
-  _loadSavedDate() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? savedDate = prefs.getString('chosen_date');
-    if (savedDate != null && savedDate.isNotEmpty) {
-      DateTime parsedDate = DateTime.parse(savedDate);
-      widget.updateDate(parsedDate);
+  Future<void> _saveDateInit(DateTime dateInit) async {
+    await SaveStateUtility.saveDateInit(dateInit);
+  }
+
+  Future<void> _saveTitle(String title) async {
+    await SaveStateUtility.saveTitle(title);
+  }
+
+  Future<void> _loadDateInit() async {
+    DateTime? loadedDateInit = await SaveStateUtility.loadDateInit();
+    if (loadedDateInit != null) {
+      widget.updateDate(loadedDateInit);
+      widget.onShowBigButtonChanged(false);
     }
   }
 
-  _saveDate(DateTime chosenDate) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('chosen_date', chosenDate.toIso8601String());
+  Future<void> _loadTitle() async {
+    String? loadedTitle = await SaveStateUtility.loadTitle();
+    if (loadedTitle !=null){
+      widget.updateDisplayedTitle(loadedTitle);
+    }
+  }
+
+  Future<void> _clearSavedDateInit() async {
+    await SaveStateUtility.clearDateInit();
+  }
+
+    Future<void> setGlobalDate(DateTime globalDate) async {
+    await SaveStateUtility.setGlobalDate(globalDate);
+  }
+
+  Future<DateTime?> getGlobalDate() async {
+    return await SaveStateUtility.getGlobalDate();
   }
 
 
@@ -88,7 +110,7 @@ class _StartButtonState extends State<StartButton> {
   }
   Future _bottomSheetPopUp(BuildContext context) async {
     DateTime dateInit = widget.dateInit;
-    DateTime? chosenDate = await showModalBottomSheet(
+    return showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(12))),
@@ -113,9 +135,11 @@ class _StartButtonState extends State<StartButton> {
                   children: [
                     TextButton(
                       onPressed: () {
-                        widget.updateDate(dateInit);
+                        widget.updateDate(DateTime(DateTime.now().year, DateTime.now().month, 
+                          DateTime.now().day + 1));
                         Navigator.of(context).pop();
                         _textEditingController.clear();
+                        _clearSavedDateInit();
                       },
                       child: const Text(
                         'Cancel',
@@ -128,7 +152,9 @@ class _StartButtonState extends State<StartButton> {
                     TextButton(
                       onPressed: () {
                         widget.updateDisplayedTitle(_textEditingController.text);
+                        _saveTitle(_textEditingController.text);
                         widget.onShowBigButtonChanged(false);
+                        _saveDateInit(dateInit);
                         Navigator.of(context).pop();
                       },
                       child: const Text(
@@ -175,12 +201,16 @@ class _StartButtonState extends State<StartButton> {
                     data: const CupertinoThemeData(
                       brightness: Brightness.dark),
                     child: CupertinoDatePicker(
-                      minimumDate: dateInit,
-                      initialDateTime: dateInit,
+                      minimumDate: DateTime(DateTime.now().year, DateTime.now().month, 
+                      DateTime.now().day + 1),
+                      maximumDate: DateTime.now().add(const Duration(days: 36500)),
+                      initialDateTime: DateTime(DateTime.now().year, DateTime.now().month, 
+                      DateTime.now().day + 1),
                       mode: CupertinoDatePickerMode.date,
                       onDateTimeChanged:  (DateTime newDate) {
-                        setState(() => (newDate.compareTo(DateTime.now().add(const Duration(days: 36500)))) == -1 ? 
-                        (widget.updateDate(newDate)):(widget.updateDate(DateTime.now().add(const Duration(days: 36500)))));
+                        setState((){
+                                    widget.updateDate(newDate);
+                                    });
                       },
                     ),
                   ),
@@ -191,9 +221,5 @@ class _StartButtonState extends State<StartButton> {
         ),
       ),
     );
-    if (chosenDate != null) {
-      _saveDate(chosenDate);
-      widget.updateDate(chosenDate);
-    }
   }
 }
