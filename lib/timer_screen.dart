@@ -208,7 +208,7 @@ class _Timer extends State<Timer> {
                       maximumDate: DateTime.now().add(const Duration(days: 36500)),
                       initialDateTime: dateInit,
                       mode: CupertinoDatePickerMode.date,
-                      onDateTimeChanged:  (DateTime newDate) {
+                      onDateTimeChanged: (DateTime newDate) {
                         setState((){
                           widget.updateDate(newDate);
                           _saveDateInit(newDate);

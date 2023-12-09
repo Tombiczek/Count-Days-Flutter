@@ -200,8 +200,8 @@ class _StartButtonState extends State<StartButton> {
                       mode: CupertinoDatePickerMode.date,
                       onDateTimeChanged:  (DateTime newDate) {
                         setState((){
-                          widget.updateDate(newDate);
                           _saveDateInit(newDate);
+                          widget.updateDate(newDate);
                         });
                       },
                     ),
