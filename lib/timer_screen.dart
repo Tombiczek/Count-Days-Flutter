@@ -157,7 +157,6 @@ class _Timer extends State<Timer> {
                       onPressed: () {
                         widget.updateDisplayedTitle(_textEditingController.text);
                         _saveTitle(_textEditingController.text);
-                        _saveDateInit(dateInit);
                         Navigator.of(context).pop();
                       },
                       child: const Text(
@@ -211,8 +210,9 @@ class _Timer extends State<Timer> {
                       mode: CupertinoDatePickerMode.date,
                       onDateTimeChanged:  (DateTime newDate) {
                         setState((){
-                                    widget.updateDate(newDate);
-                                    });}
+                          widget.updateDate(newDate);
+                          _saveDateInit(newDate);
+                          });}
                     ),
                   ),
                 ),

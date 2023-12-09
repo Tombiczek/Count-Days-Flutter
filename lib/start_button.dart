@@ -57,14 +57,6 @@ class _StartButtonState extends State<StartButton> {
     await SaveStateUtility.clearDateInit();
   }
 
-    Future<void> setGlobalDate(DateTime globalDate) async {
-    await SaveStateUtility.setGlobalDate(globalDate);
-  }
-
-  Future<DateTime?> getGlobalDate() async {
-    return await SaveStateUtility.getGlobalDate();
-  }
-
 
   @override
   void dispose(){
@@ -154,7 +146,6 @@ class _StartButtonState extends State<StartButton> {
                         widget.updateDisplayedTitle(_textEditingController.text);
                         _saveTitle(_textEditingController.text);
                         widget.onShowBigButtonChanged(false);
-                        _saveDateInit(dateInit);
                         Navigator.of(context).pop();
                       },
                       child: const Text(
@@ -209,8 +200,9 @@ class _StartButtonState extends State<StartButton> {
                       mode: CupertinoDatePickerMode.date,
                       onDateTimeChanged:  (DateTime newDate) {
                         setState((){
-                                    widget.updateDate(newDate);
-                                    });
+                          widget.updateDate(newDate);
+                          _saveDateInit(newDate);
+                        });
                       },
                     ),
                   ),

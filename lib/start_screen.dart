@@ -13,10 +13,16 @@ class StartScreen extends StatefulWidget{
 }
 
 class _StartScreenState extends State<StartScreen> {
-  bool showBigButton = true;
-  String globalTitle = '';
-  DateTime dateInit = DateTime(DateTime.now().year, DateTime.now().month, 
-                      DateTime.now().day + 1, 0, 0, 0);
+  late bool showBigButton = true;
+  late String globalTitle = '';
+  late DateTime dateInit;
+
+
+  @override
+  void initState() {
+    super.initState();
+    dateInit = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1, 0, 0, 0);
+  }
 
   void updateDisplayedTitle(String newTitle) {
     setState(() {
