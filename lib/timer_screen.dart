@@ -53,9 +53,8 @@ class _Timer extends State<Timer> {
   @override
   Widget build(BuildContext context) {
     String globalTitle = widget.globalTitle;
-    DateTime dateInit = widget.dateInit;
     DateFormat formatter = DateFormat('d MMMM y');
-    String formattedDate = formatter.format(dateInit);
+    String formattedDate = formatter.format(widget.dateInit);
    return Scaffold(
       backgroundColor:const Color.fromARGB(255, 28, 28, 30),
       body: SizedBox(
@@ -78,7 +77,7 @@ class _Timer extends State<Timer> {
                     TextButton(
                       onPressed: () {
                         _bottomSheetPopUp(context, CountdownWidget(
-                                  dateInit: dateInit,
+                                  dateInit: widget.dateInit,
                                   onStopCountdown: () {},));
                       },
                       child: const Text(
@@ -104,7 +103,7 @@ class _Timer extends State<Timer> {
                 SizedBox(
                   width: 350,
                   height: 80,
-                  child: CountdownWidget(dateInit: dateInit, onStopCountdown: (){
+                  child: CountdownWidget(dateInit: widget.dateInit, onStopCountdown: (){
                     // do something when stopped
                   },)
                 ),
