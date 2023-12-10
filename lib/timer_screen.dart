@@ -122,7 +122,7 @@ class _Timer extends State<Timer> {
         borderRadius: BorderRadius.vertical(top: Radius.circular(12))),
       backgroundColor: const Color.fromARGB(255, 28, 28, 30),
       isDismissible: false,
-      isScrollControlled: true, // Tu trzeba sprawdzić z telefonem czy nie będzie problemem
+      isScrollControlled: false, // Tu trzeba sprawdzić z telefonem czy nie będzie problemem
       // TODO: Tu tez problem z klawiaturą, trzeba sprawdzić
       builder: (context) => SingleChildScrollView(
         child: Container(
