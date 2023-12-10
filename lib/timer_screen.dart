@@ -116,7 +116,6 @@ class _Timer extends State<Timer> {
   Future _bottomSheetPopUp(BuildContext context, CountdownWidget countdownWidget) {
     String globalTitle = widget.globalTitle;
     _textEditingController.text = globalTitle;
-    DateTime dateInit = widget.dateInit;
     return showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(
@@ -157,6 +156,7 @@ class _Timer extends State<Timer> {
                       onPressed: () {
                         widget.updateDisplayedTitle(_textEditingController.text);
                         _saveTitle(_textEditingController.text);
+                        _saveDateInit(widget.dateInit);
                         Navigator.of(context).pop();
                       },
                       child: const Text(
@@ -206,12 +206,11 @@ class _Timer extends State<Timer> {
                       minimumDate: DateTime(DateTime.now().year, DateTime.now().month, 
                       DateTime.now().day + 1),
                       maximumDate: DateTime.now().add(const Duration(days: 36500)),
-                      initialDateTime: dateInit,
+                      initialDateTime: widget.dateInit,
                       mode: CupertinoDatePickerMode.date,
                       onDateTimeChanged: (DateTime newDate) {
                         setState((){
                           widget.updateDate(newDate);
-                          _saveDateInit(newDate);
                           });}
                     ),
                   ),

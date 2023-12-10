@@ -101,7 +101,6 @@ class _StartButtonState extends State<StartButton> {
     );
   }
   Future _bottomSheetPopUp(BuildContext context) async {
-    DateTime dateInit = widget.dateInit;
     return showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(
@@ -145,6 +144,7 @@ class _StartButtonState extends State<StartButton> {
                       onPressed: () {
                         widget.updateDisplayedTitle(_textEditingController.text);
                         _saveTitle(_textEditingController.text);
+                        _saveDateInit(widget.dateInit);
                         widget.onShowBigButtonChanged(false);
                         Navigator.of(context).pop();
                       },
@@ -200,7 +200,6 @@ class _StartButtonState extends State<StartButton> {
                       mode: CupertinoDatePickerMode.date,
                       onDateTimeChanged:  (DateTime newDate) {
                         setState((){
-                          _saveDateInit(newDate);
                           widget.updateDate(newDate);
                         });
                       },
