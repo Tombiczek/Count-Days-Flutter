@@ -22,12 +22,21 @@ class StartButton extends StatefulWidget {
 class _StartButtonState extends State<StartButton> {
   final TextEditingController _textEditingController = TextEditingController();
 
+    // Data która będzie się ciągle updatowała przy zmianie zegara
+  late DateTime datePass; 
+
 
   @override
   void initState() {
     super.initState();
     _loadTitle();
     _loadDateInit();
+  }
+
+    void passDate(newDate){
+    setState(() {
+      datePass = newDate;
+    });
   }
 
   Future<void> _saveDateInit(DateTime dateInit) async {
@@ -53,10 +62,6 @@ class _StartButtonState extends State<StartButton> {
     }
   }
 
-  Future<void> _clearSavedDateInit() async {
-    await SaveStateUtility.clearDateInit();
-  }
-
 
   @override
   void dispose(){
@@ -79,14 +84,12 @@ class _StartButtonState extends State<StartButton> {
         onPressed: null,
         style: OutlinedButton.styleFrom(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-            
-          ),
+            borderRadius: BorderRadius.circular(12),  
+            ),
           side: const BorderSide(
             color: Color.fromARGB(255, 142, 142, 147),
             width: 1, // Set the border width to 1 (or any other value)
-          ),
-          
+          ),        
         ),
         child: const Text(
           'Dotknij,\n aby dodać\n licznik',
@@ -97,25 +100,22 @@ class _StartButtonState extends State<StartButton> {
             ),
           ),
         ),
-      )
+      ),
     );
   }
   Future _bottomSheetPopUp(BuildContext context) async {
+    final double keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
     return showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(12))),
       backgroundColor: const Color.fromARGB(255, 28, 28, 30),
       isDismissible: false,
-      isScrollControlled: true, // Tu trzeba sprawdzić z telefonem czy nie będzie problemem
-      // TODO: Problem z klawiaturą w tym miejscu
+      isScrollControlled: true,
       builder: (context) => SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewInsets.bottom,
-          ),
-          child: SizedBox(
-            height: 785, // Adjust the height as needed
+          height: 785 - keyboardHeight,
+           padding: const EdgeInsets.all(5),// Adjust the height as needed
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -126,11 +126,8 @@ class _StartButtonState extends State<StartButton> {
                   children: [
                     TextButton(
                       onPressed: () {
-                        widget.updateDate(DateTime(DateTime.now().year, DateTime.now().month, 
-                          DateTime.now().day + 1));
                         Navigator.of(context).pop();
                         _textEditingController.clear();
-                        _clearSavedDateInit();
                       },
                       child: const Text(
                         'Cancel',
@@ -143,6 +140,7 @@ class _StartButtonState extends State<StartButton> {
                     TextButton(
                       onPressed: () {
                         widget.updateDisplayedTitle(_textEditingController.text);
+                        widget.updateDate(datePass);
                         _saveTitle(_textEditingController.text);
                         _saveDateInit(widget.dateInit);
                         widget.onShowBigButtonChanged(false);
@@ -200,7 +198,7 @@ class _StartButtonState extends State<StartButton> {
                       mode: CupertinoDatePickerMode.date,
                       onDateTimeChanged:  (DateTime newDate) {
                         setState((){
-                          widget.updateDate(newDate);
+                          passDate(newDate);
                         });
                       },
                     ),
@@ -210,7 +208,6 @@ class _StartButtonState extends State<StartButton> {
             ),
           ),
         ),
-      ),
     );
   }
 }

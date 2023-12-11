@@ -22,6 +22,10 @@ class Timer extends StatefulWidget {
 class _Timer extends State<Timer> {
   final TextEditingController _textEditingController = TextEditingController();
 
+  // Data która będzie się ciągle updatowała przy zmianie zegara
+  late DateTime datePass; 
+                          
+
     @override
   void initState() {
     super.initState();
@@ -31,6 +35,12 @@ class _Timer extends State<Timer> {
   void dispose(){
     _textEditingController.dispose();
     super.dispose();
+  }
+
+  void passDate(newDate){
+    setState(() {
+      datePass = newDate;
+    });
   }
 
   Future<void> _saveDateInit(DateTime dateInit) async {
@@ -115,21 +125,18 @@ class _Timer extends State<Timer> {
   Future _bottomSheetPopUp(BuildContext context, CountdownWidget countdownWidget) {
     String globalTitle = widget.globalTitle;
     _textEditingController.text = globalTitle;
+    final double keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
     return showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(12))),
       backgroundColor: const Color.fromARGB(255, 28, 28, 30),
       isDismissible: false,
-      isScrollControlled: true, // Tu trzeba sprawdzić z telefonem czy nie będzie problemem
-      // TODO: Tu tez problem z klawiaturą, trzeba sprawdzić
+      isScrollControlled: true,
       builder: (context) => SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewInsets.bottom,
-          ),
-          child: SizedBox(
-            height: 785, // Adjust the height as needed
+          height: 785 - keyboardHeight,
+           padding: const EdgeInsets.all(5),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -154,6 +161,7 @@ class _Timer extends State<Timer> {
                     TextButton(
                       onPressed: () {
                         widget.updateDisplayedTitle(_textEditingController.text);
+                        widget.updateDate(datePass);
                         _saveTitle(_textEditingController.text);
                         _saveDateInit(widget.dateInit);
                         Navigator.of(context).pop();
@@ -209,7 +217,7 @@ class _Timer extends State<Timer> {
                       mode: CupertinoDatePickerMode.date,
                       onDateTimeChanged: (DateTime newDate) {
                         setState((){
-                          widget.updateDate(newDate);
+                          passDate(newDate);
                           });}
                     ),
                   ),
@@ -251,7 +259,6 @@ class _Timer extends State<Timer> {
             ),
           ),
         ),
-      ),
     );
   }
 }
