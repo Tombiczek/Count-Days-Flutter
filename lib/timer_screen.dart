@@ -23,11 +23,10 @@ class _Timer extends State<Timer> {
   final TextEditingController _textEditingController = TextEditingController();
 
   // Data która będzie się ciągle updatowała przy zmianie zegara
-    late DateTime datePass;
+    late DateTime datePass = widget.dateInit;
 
-
-    _Timer() : datePass = DateTime(DateTime.now().year, DateTime.now().month, 
-                          DateTime.now().day + 1);
+// ja nie ruszam datePass w zegarze więc on uwaza ze on jest null
+// dlatego mi sie to uruchamia i jest problem
                           
 
     @override
@@ -165,11 +164,11 @@ class _Timer extends State<Timer> {
                     ),
                     TextButton(
                       onPressed: () {
+                        widget.updateDisplayedTitle(_textEditingController.text);
+                        _saveTitle(_textEditingController.text);
                         passDate(datePass);
                         widget.updateDate(datePass);
                         _saveDateInit(datePass);
-                        widget.updateDisplayedTitle(_textEditingController.text);
-                        _saveTitle(_textEditingController.text);
                         Navigator.of(context).pop();
                       },
                       child: const Text(
