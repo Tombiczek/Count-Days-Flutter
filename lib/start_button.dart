@@ -23,7 +23,10 @@ class _StartButtonState extends State<StartButton> {
   final TextEditingController _textEditingController = TextEditingController();
 
     // Data która będzie się ciągle updatowała przy zmianie zegara
-  late DateTime datePass; 
+  late DateTime datePass;
+
+  _StartButtonState() : datePass = DateTime(DateTime.now().year, DateTime.now().month, 
+                          DateTime.now().day + 1);
 
 
   @override
@@ -35,7 +38,8 @@ class _StartButtonState extends State<StartButton> {
 
     void passDate(newDate){
     setState(() {
-      datePass = newDate;
+      datePass = newDate ?? DateTime(DateTime.now().year, DateTime.now().month, 
+                          DateTime.now().day + 1);
     });
   }
 
@@ -128,6 +132,7 @@ class _StartButtonState extends State<StartButton> {
                       onPressed: () {
                         Navigator.of(context).pop();
                         _textEditingController.clear();
+                        passDate(null);
                       },
                       child: const Text(
                         'Cancel',
@@ -139,10 +144,11 @@ class _StartButtonState extends State<StartButton> {
                     ),
                     TextButton(
                       onPressed: () {
-                        widget.updateDisplayedTitle(_textEditingController.text);
+                        passDate(datePass);
                         widget.updateDate(datePass);
+                        _saveDateInit(datePass);
+                        widget.updateDisplayedTitle(_textEditingController.text);
                         _saveTitle(_textEditingController.text);
-                        _saveDateInit(widget.dateInit);
                         widget.onShowBigButtonChanged(false);
                         Navigator.of(context).pop();
                       },
