@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Settings extends StatelessWidget{
-  const Settings({super.key});
+class Settings extends StatelessWidget {
+  const Settings({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,21 +12,37 @@ class Settings extends StatelessWidget{
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          SizedBox(
-            height: 100,
-            child: Text('Ustawienia', 
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            alignment: Alignment.center,
+            height: 40,
+            width: 400,
+            child: const Text(
+              'Ustawienia',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 32,
-                fontWeight: FontWeight.bold),
-              )
-            )
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Container(
+            alignment: Alignment.center,
+            height: 40,
+            width: 400,
+            child: const Text(
+              'v0.3.0',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 10,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          )
         ],
-      )
+      ),
     );
   }
 }
