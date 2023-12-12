@@ -23,6 +23,27 @@ class SaveStateUtility {
   }
 
 
+      // DATE_START: SAVE, LOAD, DELETE
+
+  static const String dateStartKey = 'dateStart';
+
+  static Future<void> saveDateStart(DateTime dateStart) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('dateStart', dateStart.toIso8601String());
+  }
+
+  static Future<DateTime?> loadDateStart() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? dateStartString = prefs.getString('dateStart');
+    return dateStartString != null ? DateTime.parse(dateStartString) : null;
+  }
+
+  static Future<void> clearDateStart() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove(dateStartKey);
+  }
+
+
   // TITLE: SAVE, LOAD, DELETE
 
   static const String titleKey = 'title';

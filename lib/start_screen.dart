@@ -17,6 +17,7 @@ class _StartScreenState extends State<StartScreen> {
   String globalTitle = '';
   DateTime dateInit = DateTime(DateTime.now().year, DateTime.now().month, 
                           DateTime.now().day + 1);
+  DateTime dateStart = DateTime.now();
 
 
   void updateDisplayedTitle(String newTitle) {
@@ -28,6 +29,12 @@ class _StartScreenState extends State<StartScreen> {
   void updateDate(DateTime newDate) {
     setState(() {
       dateInit = newDate;
+    });
+  }
+
+  void updateDateStart(DateTime newDate){
+    setState(() {
+      dateStart = newDate;
     });
   }
 
@@ -48,11 +55,13 @@ class _StartScreenState extends State<StartScreen> {
         child: showBigButton ? 
           StartButton(width: 350, height: 630, onShowBigButtonChanged: (newValue) {
             setState(() {showBigButton = newValue;});},updateDisplayedTitle: updateDisplayedTitle,
-            updateDate: updateDate, dateInit: dateInit,) :
+            updateDate: updateDate, dateInit: dateInit, dateStart: dateStart,
+            updateDateStart: updateDateStart,) :
             Timer(onShowBigButtonChanged: (newValue) {
             setState(() {showBigButton = newValue;});},updateDisplayedTitle: updateDisplayedTitle,
-                  globalTitle: globalTitle, updateDate: updateDate, dateInit: dateInit,)
-            )
+                  globalTitle: globalTitle, updateDate: updateDate, dateInit: dateInit, 
+                  dateStart: dateStart, updateDateStart: updateDateStart,)
+      )
     );
   }
 }

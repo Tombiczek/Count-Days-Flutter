@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 import 'package:licznik_v1/countdown_widget.dart';
+import 'package:licznik_v1/percent_widget.dart';
 import 'package:licznik_v1/save_state_utility.dart';
 
 
@@ -11,8 +14,11 @@ class Timer extends StatefulWidget {
   final String globalTitle;
   final Function(DateTime) updateDate;
   final DateTime dateInit;
+  final DateTime dateStart;
+  final Function(DateTime) updateDateStart;
   const Timer({super.key, required this.onShowBigButtonChanged, required this.updateDisplayedTitle,
-  required this.globalTitle, required this.updateDate, required this.dateInit});
+  required this.globalTitle, required this.updateDate, required this.dateInit, 
+  required this.dateStart, required this.updateDateStart});
   
   @override
   State<StatefulWidget> createState() => _Timer();
@@ -24,11 +30,13 @@ class _Timer extends State<Timer> {
 
   // Data która będzie się ciągle updatowała przy zmianie zegara
   late DateTime datePass = widget.dateInit;
+  DateTime x = DateTime.now();
                           
 
   @override
   void initState() {
     super.initState();
+    _loadDateStart();
   }
   
   @override
@@ -42,6 +50,10 @@ class _Timer extends State<Timer> {
     datePass = newDate ?? DateTime(DateTime.now().year, DateTime.now().month, 
                           DateTime.now().day + 1);
     });
+
+  }
+    Future<void> _saveDateStart(DateTime dateStart) async {
+    await SaveStateUtility.saveDateStart(dateStart);
   }
 
   Future<void> _saveDateInit(DateTime dateInit) async {
@@ -52,6 +64,10 @@ class _Timer extends State<Timer> {
     await SaveStateUtility.saveTitle(title);
   }
 
+    Future<void> _clearSavedDateStart() async {
+    await SaveStateUtility.clearDateStart();
+  }
+
   Future<void> _clearSavedDateInit() async {
     await SaveStateUtility.clearDateInit();
   }
@@ -59,6 +75,21 @@ class _Timer extends State<Timer> {
   Future<void> _clearSavedTitle() async {
     await SaveStateUtility.clearTitle();
   }
+
+  void lDateStart(DateTime newDate){
+      x = newDate;
+  }
+
+
+
+  Future<void> _loadDateStart() async {
+  DateTime? loadDateStart = await SaveStateUtility.loadDateStart();
+  if(loadDateStart != null) {
+    lDateStart(loadDateStart);
+    }
+  } 
+
+
 
 
   @override
@@ -118,14 +149,18 @@ class _Timer extends State<Timer> {
                     // do something when stopped
                   },)
                 ),
+                SizedBox(
+                  width: 350,
+                  height: 110,
+                  child: PercentWidget(dateStart: widget.dateStart ,dateFinish: widget.dateInit,)
+                )
               ]
         ),
       ),
     );
   }
   Future _bottomSheetPopUp(BuildContext context, CountdownWidget countdownWidget) {
-    String globalTitle = widget.globalTitle;
-    _textEditingController.text = globalTitle;
+    _textEditingController.text = widget.globalTitle;
     final double keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
     return showModalBottomSheet(
       context: context,
@@ -148,7 +183,7 @@ class _Timer extends State<Timer> {
                   children: [
                     TextButton(
                       onPressed: () {
-                        _textEditingController.text = globalTitle;
+                        _textEditingController.text = widget.globalTitle;
                         Navigator.of(context).pop();
                       },
                       child: const Text(
@@ -166,6 +201,10 @@ class _Timer extends State<Timer> {
                         passDate(datePass);
                         widget.updateDate(datePass);
                         _saveDateInit(datePass);
+                          if (x.compareTo(DateTime.now()) == 0) {
+                            widget.updateDateStart(DateTime.now());
+                            _saveDateStart(DateTime.now());
+                          }
                         Navigator.of(context).pop();
                       },
                       child: const Text(
@@ -194,7 +233,7 @@ class _Timer extends State<Timer> {
                   height: 40,
                     child: CupertinoTextField(
                       controller: _textEditingController,
-                      placeholder:  globalTitle.isEmpty ? 'Title' : '',
+                      placeholder:  widget.globalTitle.isEmpty ? 'Title' : '',
                       placeholderStyle: const TextStyle(
                         color: Color.fromARGB(255, 153, 153, 160)
                       ),
@@ -236,6 +275,7 @@ class _Timer extends State<Timer> {
                       DateTime.now().day + 1));
                       _clearSavedDateInit();
                       _clearSavedTitle();
+                      _clearSavedDateStart();
                       Navigator.of(context).pop();
                     },
                   child: OutlinedButton(

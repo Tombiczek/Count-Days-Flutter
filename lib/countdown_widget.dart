@@ -51,7 +51,7 @@ class _CountdownWidgetState extends State<CountdownWidget> {
 
   @override
   void dispose() {
-    _timer.cancel(); // Cancel the timer in dispose
+    _timer.cancel();
     super.dispose();
   }
 

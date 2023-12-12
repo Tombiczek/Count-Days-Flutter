@@ -11,9 +11,12 @@ class StartButton extends StatefulWidget {
   final Function(String) updateDisplayedTitle;
   final Function(DateTime) updateDate;
   final DateTime dateInit;
+  final DateTime dateStart;
+  final Function(DateTime) updateDateStart;
   const StartButton({super.key, required this.height, required this.width, 
   required this.onShowBigButtonChanged, 
-  required this.updateDisplayedTitle, required this.updateDate, required this.dateInit});
+  required this.updateDisplayedTitle, required this.updateDate, required this.dateInit,
+  required this.dateStart, required this.updateDateStart});
 
   @override
   State<StartButton> createState() => _StartButtonState();
@@ -34,6 +37,7 @@ class _StartButtonState extends State<StartButton> {
     super.initState();
     _loadTitle();
     _loadDateInit();
+    _loadDateStart();
   }
 
     void passDate(newDate){
@@ -43,12 +47,23 @@ class _StartButtonState extends State<StartButton> {
     });
   }
 
+  Future<void> _saveDateStart(DateTime dateStart) async {
+    await SaveStateUtility.saveDateStart(dateStart);
+  }
+
   Future<void> _saveDateInit(DateTime dateInit) async {
     await SaveStateUtility.saveDateInit(dateInit);
   }
 
   Future<void> _saveTitle(String title) async {
     await SaveStateUtility.saveTitle(title);
+  }
+
+  Future<void> _loadDateStart() async {
+    DateTime? loadDateStart = await SaveStateUtility.loadDateStart();
+    if (loadDateStart != null) {
+      widget.updateDateStart(loadDateStart);
+    }
   }
 
   Future<void> _loadDateInit() async {
@@ -92,8 +107,8 @@ class _StartButtonState extends State<StartButton> {
             ),
           side: const BorderSide(
             color: Color.fromARGB(255, 142, 142, 147),
-            width: 1, // Set the border width to 1 (or any other value)
-          ),        
+            width: 1,
+          ),
         ),
         child: const Text(
           'Dotknij,\n aby dodać\n licznik',
@@ -147,6 +162,8 @@ class _StartButtonState extends State<StartButton> {
                         passDate(datePass);
                         widget.updateDate(datePass);
                         _saveDateInit(datePass);
+                        widget.updateDateStart(DateTime.now());
+                        _saveDateStart(DateTime.now());
                         widget.updateDisplayedTitle(_textEditingController.text);
                         _saveTitle(_textEditingController.text);
                         widget.onShowBigButtonChanged(false);
