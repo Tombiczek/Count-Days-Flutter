@@ -38,7 +38,6 @@ class _CountdownWidgetState extends State<CountdownWidget> {
     _timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) {
       setState(() {
         remainingTime = widget.dateInit.difference(DateTime.now());
-        // remainingTime = DateTime(2023, 12, 12, 14, 32, 45).difference(DateTime.now());
       });
       if (remainingTime.isNegative) {
         timer.cancel();
@@ -59,7 +58,6 @@ class _CountdownWidgetState extends State<CountdownWidget> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        // color: Color.fromARGB(255, 44, 44, 46),
         color: isTimerFinished ? Colors.green : const Color.fromARGB(255, 44, 44, 46),
         borderRadius: const BorderRadius.all(Radius.circular(12.0)),
       ),

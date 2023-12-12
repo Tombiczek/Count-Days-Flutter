@@ -16,6 +16,7 @@ class PercentWidget extends StatefulWidget{
 class _PercentWidget extends State<PercentWidget>{
   late Timer _timer;
   double percentage = 0.0;
+  bool isTimerFinished = false;
 
   @override
   void initState() {
@@ -27,6 +28,8 @@ class _PercentWidget extends State<PercentWidget>{
       });
       if (percentage == 1) {
         timer.cancel();
+        percentage = 1;
+        isTimerFinished = true;
       }
     });
   }
@@ -42,7 +45,7 @@ double calculatePercentage() {
   int leftSeconds = widget.dateFinish.difference(DateTime.now()).inSeconds;
 
   if (leftSeconds <= 0) {
-    return 0.0;
+    return 1;
   }
 
   double percentage = (totalSeconds - leftSeconds) / totalSeconds;
@@ -62,7 +65,7 @@ double calculatePercentage() {
               animation: false,
               percent: percentage,
               backgroundColor: const Color.fromARGB(255, 44, 44, 46),
-              progressColor: Colors.blue,
+              progressColor: isTimerFinished ? Colors.green : Colors.blue,
               barRadius: const Radius.circular(10),
               center: Text(
                 "${(percentage * 100).toStringAsFixed(1)}%",
