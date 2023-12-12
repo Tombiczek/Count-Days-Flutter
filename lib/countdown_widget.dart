@@ -19,6 +19,7 @@ class CountdownWidget extends StatefulWidget {
 class _CountdownWidgetState extends State<CountdownWidget> {
   Duration remainingTime = const Duration(hours: 0);
   late Timer _timer;
+  bool isTimerFinished = false;
 
   void stopCountdown() {
     if (_timer.isActive) {
@@ -40,7 +41,8 @@ class _CountdownWidgetState extends State<CountdownWidget> {
       if (remainingTime.isNegative) {
         timer.cancel();
         stopCountdown();
-        // Timer completed
+        remainingTime = Duration.zero;
+        isTimerFinished = true;
       }
     });
   }
@@ -54,9 +56,10 @@ class _CountdownWidgetState extends State<CountdownWidget> {
 @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        color: Color.fromARGB(255, 44, 44, 46),
-        borderRadius: BorderRadius.all(Radius.circular(12.0)),
+      decoration: BoxDecoration(
+        // color: Color.fromARGB(255, 44, 44, 46),
+        color: isTimerFinished ? Colors.green : const Color.fromARGB(255, 44, 44, 46),
+        borderRadius: const BorderRadius.all(Radius.circular(12.0)),
       ),
       padding: const EdgeInsets.all(5.0),
       child: Column(

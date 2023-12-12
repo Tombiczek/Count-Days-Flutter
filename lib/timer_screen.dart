@@ -233,7 +233,7 @@ class _Timer extends State<Timer> {
                       countdownWidget.stopCountdown();
                       widget.onShowBigButtonChanged(true);
                       widget.updateDate(DateTime(DateTime.now().year, DateTime.now().month, 
-                      DateTime.now().day + 1, 0, 0, 0));
+                      DateTime.now().day + 1));
                       _clearSavedDateInit();
                       _clearSavedTitle();
                       Navigator.of(context).pop();
