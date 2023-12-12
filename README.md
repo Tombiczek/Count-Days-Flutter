@@ -36,7 +36,7 @@ The project is created with:
 And tested on iPhone 15 Pro (iOS 17.0).
 
 ## What is this?
-The only feature of this app is counting to a given date, which has to be in the future. You can add only one timer, and you are able to give it a name. If the title field is left empty, there will be given a default name to the timer representing a date to which the countdown is set.
+The only feature of this app is counting to a given date, which has to be in the future. You can add only one timer, you are able to give it a name and see how much time has passed based on a percentage value. If the title field is left empty, there will be given a default name to the timer representing a date to which the countdown is set.
 
 ### Start Screen
 To add the timer, you only have to tap somewhere on the screen.<br>
@@ -81,10 +81,12 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 **Project Status:** Completed, but additional features will be rolling out in the coming releases.
 
 ## Room for Improvement
+Room for Improvement:
+  * Add an option to set a custom start date to beging calculating percetage 
+
 
 To-do:
   * Implement a settings page by adding options for language change and theme change.
-  * Implement a percent widget that will allow users to see how much time has already passed.
 
 
 ## License
