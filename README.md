@@ -81,9 +81,6 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 **Project Status:** Completed, but additional features will be rolling out in the coming releases.
 
 ## Room for Improvement
-Room for Improvement:
-  * Add an option to set a custom start date to beging calculating percetage 
-
 
 To-do:
   * Implement a settings page by adding options for language change and theme change.
