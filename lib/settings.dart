@@ -35,7 +35,7 @@ class Settings extends StatelessWidget {
             child: Column(
               children: const [
                 Text(
-                  'v0.4.0',
+                  'v0.4.1',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 10,

@@ -110,6 +110,9 @@ class _Timer extends State<Timer> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextButton(
+                      style: TextButton.styleFrom(
+                        splashFactory: NoSplash.splashFactory,
+                      ),
                       onPressed: (){
                         _bottomSheetPopUp2(context);
                     }, 
@@ -123,6 +126,9 @@ class _Timer extends State<Timer> {
                     ),
                     ),
                     TextButton(
+                      style: TextButton.styleFrom(
+                        splashFactory: NoSplash.splashFactory,
+                      ),
                       onPressed: () {
                         _bottomSheetPopUp(context, CountdownWidget(
                                   dateInit: widget.dateInit,
