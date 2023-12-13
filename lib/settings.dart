@@ -32,13 +32,26 @@ class Settings extends StatelessWidget {
             alignment: Alignment.center,
             height: 40,
             width: 400,
-            child: const Text(
-              'v0.3.0',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 10,
-                fontWeight: FontWeight.bold,
-              ),
+            child: Column(
+              children: const [
+                Text(
+                  'v0.4.0',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 3), // Adjust the spacing between the version text and the new text
+                Text(
+                  'GitHub: Tombiczek',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 10, // Adjust the font size as needed
+                    fontWeight: FontWeight.normal, // Adjust the font weight as needed
+                  ),
+                ),
+              ],
             ),
           )
         ],

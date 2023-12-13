@@ -30,6 +30,7 @@ class _Timer extends State<Timer> {
 
   // Data która będzie się ciągle updatowała przy zmianie zegara
   late DateTime datePass = widget.dateInit;
+  late DateTime startDatePass = widget.dateStart;
   DateTime x = DateTime.now();
                           
 
@@ -50,7 +51,12 @@ class _Timer extends State<Timer> {
     datePass = newDate ?? DateTime(DateTime.now().year, DateTime.now().month, 
                           DateTime.now().day + 1);
     });
+  }
 
+  void passStartDate(newDate){
+    setState(() {
+      startDatePass = newDate ?? DateTime.now();
+    });
   }
     Future<void> _saveDateStart(DateTime dateStart) async {
     await SaveStateUtility.saveDateStart(dateStart);
@@ -80,17 +86,12 @@ class _Timer extends State<Timer> {
       x = newDate;
   }
 
-
-
   Future<void> _loadDateStart() async {
   DateTime? loadDateStart = await SaveStateUtility.loadDateStart();
   if(loadDateStart != null) {
     lDateStart(loadDateStart);
     }
   } 
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -108,13 +109,18 @@ class _Timer extends State<Timer> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Transparent',
+                    TextButton(
+                      onPressed: (){
+                        _bottomSheetPopUp2(context);
+                    }, 
+                    child: const Text(
+                      'Start Date',
                       style: TextStyle(
                         fontSize: 17,
-                        color: Colors.transparent,
+                        color: Colors.blue,
                         fontWeight: FontWeight.normal,
                       ),
+                    ),
                     ),
                     TextButton(
                       onPressed: () {
@@ -291,6 +297,122 @@ class _Timer extends State<Timer> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color.fromARGB(255, 255, 0, 0),
+                        fontSize: 15, // Set text color to transparent
+                        ),
+                      ),
+                    ),
+                  )
+                )
+              ],
+            ),
+          ),
+        ),
+    );
+  }
+
+
+  Future _bottomSheetPopUp2(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(12))),
+      backgroundColor: const Color.fromARGB(255, 28, 28, 30),
+      isDismissible: false,
+      isScrollControlled: true,
+      builder: (context) => SingleChildScrollView(
+        child: Container(
+          height: 785,
+           padding: const EdgeInsets.all(5),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text(
+                        'Cancel',
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        passStartDate(startDatePass);
+                        widget.updateDateStart(startDatePass);
+                        _saveDateStart(startDatePass);
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text(
+                        'Done',
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 50,
+                  child: Text(
+                    'Set Start Date',
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 200,
+                  width: 360,
+                  child: CupertinoTheme(
+                    data: const CupertinoThemeData(
+                      brightness: Brightness.dark),
+                    child: CupertinoDatePicker(
+                      minimumDate: DateTime.now().subtract(const Duration(days: 36500)),
+                      maximumDate: DateTime.now(),
+                      initialDateTime: widget.dateStart,
+                      mode: CupertinoDatePickerMode.date,
+                      onDateTimeChanged: (DateTime newDate) {
+                        setState((){
+                            passStartDate(newDate);
+                          });}
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 350,
+                  height: 40,
+                  child: InkWell(
+                    enableFeedback: false,
+                    onTap: () {
+                      passStartDate(DateTime.now());
+                      widget.updateDateStart(DateTime.now());
+                      _saveDateStart(DateTime.now());
+                      Navigator.of(context).pop();
+                    },
+                  child: OutlinedButton(
+                    onPressed: null,
+                    style: OutlinedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),       
+                      ),
+                      backgroundColor: const Color.fromARGB(255, 44, 44, 46)
+                    ),
+                    child: const Text(
+                      'Set to Today',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 0, 255, 0),
                         fontSize: 15, // Set text color to transparent
                         ),
                       ),

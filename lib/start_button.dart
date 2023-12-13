@@ -47,6 +47,11 @@ class _StartButtonState extends State<StartButton> {
     });
   }
 
+  //   Future<void> _clearSavedDateInit() async {
+  //   await SaveStateUtility.clearDateInit();
+  //   widget.onShowBigButtonChanged(true);
+  // }
+
   Future<void> _saveDateStart(DateTime dateStart) async {
     await SaveStateUtility.saveDateStart(dateStart);
   }
