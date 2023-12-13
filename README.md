@@ -12,6 +12,7 @@
     + [Timer Set](#timer-set)
     + [Edit Timer](#edit-timer)
     + [Timer Set With Title](#timer-set-with-title)
+    + [Set Start Date](#set-a-start-date)
     + [Timer Finished](#timer-finished)
     + [Settings](#settings)
   * [Install](#install)
@@ -33,10 +34,10 @@ The project is created with:
   * Xcode 15.0.1
   * VS Code 1.84.2
 
-And tested on iPhone 15 Pro (iOS 17.0).
+And tested on iPhone 15 Pro (iOS 17.2).
 
 ## What is this?
-The only feature of this app is counting to a given date, which has to be in the future. You can add only one timer, you are able to give it a name and see how much time has passed based on a percentage value. If the title field is left empty, there will be given a default name to the timer representing a date to which the countdown is set.
+The only feature of this app is counting to a given date, which has to be in the future. You can add only one timer, you are able to give it a name and see how much time has passed based on a percentage value. If the title field is left empty, there will be given a default name to the timer representing a date to which the countdown is set. Plus you are now able to set a custom start date.
 
 ### Start Screen
 To add the timer, you only have to tap somewhere on the screen.<br>
@@ -50,8 +51,6 @@ After initially tapping on the screen, you will be prompted with a bottom sheet 
 After adding the first timer without setting the timer, you will get a default name that represents the date you have chosen. To edit the timer, click edit.<br>
 <img src="screenshots/timer_wout_title.png" width="300"/>
 
-
-
 ### Edit Timer
 After clicking edit the timer, you will be again prompted with a bottom sheet pop-up, allowing you to delete the timer, change the date or title. In this example, I will be adding a title. <br>
 Deleting the timer will get you back to the start screen. <br>
@@ -60,6 +59,11 @@ Deleting the timer will get you back to the start screen. <br>
 ### Timer Set With Title
 Here we can see that the title was set. <br>
 <img src="screenshots/timer_w_title.png" width="300"/>
+
+### Set a Start Date
+In this setting you can actually choose a custom start date, if you want to get acurate percetage and forgot to start your timer earlier. <br>
+<img src="screenshots/set_start_date.png" width="300"/>
+
 
 ### Timer Finished
 This is what appears to the user after the timer has finished <br>
