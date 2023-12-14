@@ -98,111 +98,139 @@ class _Timer extends State<Timer> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    String globalTitle = widget.globalTitle;
-    DateFormat formatter = DateFormat("d MMM ''yy");
-    String formattedDate = formatter.format(widget.dateInit);
-    String formattedStartDate = formatter.format(widget.dateStart);
+@override
+Widget build(BuildContext context) {
+  String globalTitle = widget.globalTitle;
+  DateFormat formatter = DateFormat("d MMM ''yy");
+  String formattedDate = formatter.format(widget.dateInit);
+  String formattedStartDate = formatter.format(widget.dateStart);
 
-    return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 28, 28, 30),
-      body: SizedBox(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextButton(
-                  style: TextButton.styleFrom(
-                    splashFactory: NoSplash.splashFactory,
-                  ),
-                  onPressed: () {
-                    _bottomSheetPopUp2(context);
-                  },
-                  child: const Text(
-                    'Start Date',
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: Colors.blue,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    splashFactory: NoSplash.splashFactory,
-                  ),
-                  onPressed: () {
-                    _bottomSheetPopUp(context, CountdownWidget(
-                      dateInit: widget.dateInit,
-                      onStopCountdown: () {},
-                      dateStart: widget.dateStart,
-                    ));
-                  },
-                  child: const Text(
-                    'Edit',
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
+  return Scaffold(
+    backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+    appBar: AppBar(
+      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+      titleTextStyle: const TextStyle(
+        color: Colors.white,
+        fontSize: 17,
+        fontWeight: FontWeight.bold,
+      ),
+      toolbarHeight: 35,
+      actions: <Widget>[
+        TextButton(
+          style: TextButton.styleFrom(
+            splashFactory: NoSplash.splashFactory,
+          ),
+          onPressed: () {
+            _bottomSheetPopUp2(context);
+          },
+          child: const Text(
+            'Start Date',
+            style: TextStyle(
+              fontSize: 17,
+              color: Colors.blue,
+              fontWeight: FontWeight.normal,
             ),
-            const SizedBox(height: 5),
-            SizedBox(
-              height: 80,
-              width: 370,
-              child: Container(
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 44, 44, 46),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
-                  child: Text(
-                    globalTitle.isEmpty
-                        ? "$formattedStartDate - $formattedDate"
-                        : globalTitle,
-                    style: const TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 15),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: CountdownWidget(
-                dateInit: widget.dateInit,
-                onStopCountdown: () {},
-                dateStart: widget.dateStart,
-              ),
-            ),
-            const SizedBox(height: 10),
-            PercentWidget(
+          ),
+        ),
+      ],
+      leading: TextButton(
+        style: TextButton.styleFrom(
+          splashFactory: NoSplash.splashFactory,
+        ),
+        onPressed: () {
+          _bottomSheetPopUp(
+            context,
+            CountdownWidget(
+              dateInit: widget.dateInit,
+              onStopCountdown: () {},
               dateStart: widget.dateStart,
-              dateFinish: widget.dateInit,
             ),
-            const SizedBox(height: 10),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: AlternativeUnitsWidget(
-                dateInit: widget.dateInit,
-                onStopCountdown: () {},
-              )
-            )
-          ],
+          );
+        },
+        child: const Text(
+          'Edit',
+          style: TextStyle(
+            fontSize: 17,
+            fontWeight: FontWeight.normal,
+          ),
         ),
       ),
-    );
-  }
+    ),
+    body: SizedBox(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            height: 55,
+            decoration: const BoxDecoration(
+              border: Border(
+                bottom: BorderSide(color: Color.fromARGB(255, 48, 48, 51)),
+              ),
+            ),
+            margin: const EdgeInsets.only(left: 20.0),
+            child: const Align(
+              alignment: Alignment.centerLeft,
+                child: Text('Count Days',
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 15),
+          SizedBox(
+            height: 80,
+            width: 360,
+            child: Container(
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 28, 28, 30),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Center(
+                child: Text(
+                  globalTitle.isEmpty
+                      ? "$formattedStartDate - $formattedDate"
+                      : globalTitle,
+                  style: const TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 15),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: CountdownWidget(
+              dateInit: widget.dateInit,
+              onStopCountdown: () {},
+              dateStart: widget.dateStart,
+            ),
+          ),
+          const SizedBox(height: 10),
+          PercentWidget(
+            dateStart: widget.dateStart,
+            dateFinish: widget.dateInit,
+          ),
+          const SizedBox(height: 10),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: AlternativeUnitsWidget(
+              dateInit: widget.dateInit,
+              onStopCountdown: () {},
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
 
   Future _bottomSheetPopUp(BuildContext context, CountdownWidget countdownWidget) {
     _textEditingController.text = widget.globalTitle;
@@ -225,7 +253,6 @@ class _Timer extends State<Timer> {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextButton(
                     onPressed: () {
@@ -264,11 +291,11 @@ class _Timer extends State<Timer> {
                 ],
               ),
               const SizedBox(
-                height: 80,
+                height: 60,
                 child: Text(
                   'Edit End Date',
                   style: TextStyle(
-                    fontSize: 32,
+                    fontSize: 28,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
@@ -281,7 +308,7 @@ class _Timer extends State<Timer> {
                   controller: _textEditingController,
                   placeholder: widget.globalTitle.isEmpty ? 'Title' : '',
                   placeholderStyle: const TextStyle(
-                      color: Color.fromARGB(255, 153, 153, 160)),
+                      color: Color.fromARGB(255, 134, 134, 141)),
                   decoration: BoxDecoration(
                       color: const Color.fromARGB(255, 44, 44, 46),
                       borderRadius: BorderRadius.circular(12)),
@@ -396,11 +423,11 @@ class _Timer extends State<Timer> {
                 ],
               ),
               const SizedBox(
-                height: 50,
+                height: 40,
                 child: Text(
                   'Set Start Date',
                   style: TextStyle(
-                    fontSize: 32,
+                    fontSize: 28,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),

@@ -64,7 +64,7 @@ double calculatePercentage() {
               lineHeight: 20.0,
               animation: false,
               percent: percentage,
-              backgroundColor: const Color.fromARGB(255, 44, 44, 46),
+              backgroundColor: const Color.fromARGB(255, 28, 28, 30),
               progressColor: isTimerFinished ? Colors.green : Colors.blue,
               barRadius: const Radius.circular(10),
               center: Text(

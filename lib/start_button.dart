@@ -96,35 +96,47 @@ class _StartButtonState extends State<StartButton> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: widget.width,
-      height: widget.height,
-      child: InkWell(
-        enableFeedback: false, // Disable ink splash animation
-        onTap: () {
-          _bottomSheetPopUp(context);
-        },
-      child: OutlinedButton(
-        onPressed: null,
-        style: OutlinedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),  
-            ),
-          side: const BorderSide(
-            color: Color.fromARGB(255, 142, 142, 147),
-            width: 1,
-          ),
+    return Scaffold(
+      backgroundColor:const Color.fromARGB(255, 0, 0, 0),
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 0, 0, 0), // kolor AppBaru
+        titleTextStyle: const TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),
+        toolbarHeight: 35,
+        title: const Text("Count Days"),
         ),
-        child: const Text(
-          'Tap to\n Count Days',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Color.fromARGB(255, 142, 142, 147),
-            fontSize: 32, // Set text color to transparent
+      body: Align(
+        alignment: Alignment.center,
+        child: SizedBox(
+          width: widget.width,
+          height: widget.height,
+          child: InkWell(
+            enableFeedback: false,
+            onTap: () {
+              _bottomSheetPopUp(context);
+            },
+          child: OutlinedButton(
+            onPressed: null,
+            style: OutlinedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),  
+                ),
+              side: const BorderSide(
+                color: Color.fromARGB(255, 126, 126, 126),
+                width: 1,
+              ),
+            ),
+            child: const Text(
+              'Tap to\n Count Days',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Color.fromARGB(255, 126, 126, 126),
+                fontSize: 32,
+                ),
+              ),
             ),
           ),
-        ),
-      ),
+        )
+      )
     );
   }
   Future _bottomSheetPopUp(BuildContext context) async {
@@ -139,7 +151,7 @@ class _StartButtonState extends State<StartButton> {
       builder: (context) => SingleChildScrollView(
         child: Container(
           height: 785 - keyboardHeight,
-           padding: const EdgeInsets.all(5),// Adjust the height as needed
+           padding: const EdgeInsets.all(5),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -202,7 +214,7 @@ class _StartButtonState extends State<StartButton> {
                       controller: _textEditingController,
                       placeholder: 'Title',
                       placeholderStyle: const TextStyle(
-                        color: Color.fromARGB(255, 153, 153, 160)
+                        color: Color.fromARGB(255, 134, 134, 141)
                       ),
                       decoration: BoxDecoration(
                         color: const Color.fromARGB(255, 44, 44, 46),

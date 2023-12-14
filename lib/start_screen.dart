@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:licznik_v1/timer_screen.dart';
 import 'package:licznik_v1/start_button.dart';
 
@@ -38,15 +37,6 @@ class _StartScreenState extends State<StartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 28, 28, 30),
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 36, 36, 38), // kolor AppBaru
-        titleTextStyle: const TextStyle(color: Colors.white, fontSize: 19),
-        toolbarHeight: 35,
-        title: const Text("Count Days"),
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarBrightness: Brightness.dark,
-        ),
-      ),
       body: Center(
         child: showBigButton
             ? StartButton(

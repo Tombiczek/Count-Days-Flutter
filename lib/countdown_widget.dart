@@ -76,10 +76,10 @@ Widget build(BuildContext context) {
         const SizedBox(height: 10), // Set vertical spacing between Text widgets to 50 pixels
         Text(
           "Of: ${(totalTime.inDays + 1)} ${totalTime.inDays == 0 ? 'day' : 'days'}",
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 18.0,
             fontWeight: FontWeight.normal,
-            color: isTimerFinished ? Colors.green : Colors.white,
+            color:Colors.white,
           ),
         ),
       ],

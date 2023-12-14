@@ -32,17 +32,20 @@ class _MyAppState extends State<MyApp> {
       Scaffold(
         body:
           IndexedStack(index: myIndex,children: widgetList,),
-          bottomNavigationBar:       
+          bottomNavigationBar:
           BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            showSelectedLabels: true,
+            showUnselectedLabels: true, 
             selectedItemColor: const Color.fromARGB(255, 0, 122, 255),
-            unselectedItemColor: const Color.fromARGB(255, 142, 142, 147),
+            unselectedItemColor: const Color.fromARGB(255, 126, 126, 126),
             onTap: (index) {
               setState(() {
                 myIndex = index;
               });
             },
             currentIndex: myIndex,
-            backgroundColor: const Color.fromARGB(255, 36, 36, 38), // kolor NavBaru
+            backgroundColor: const Color.fromARGB(255, 0, 0, 0), // kolor NavBaru
             items: const <BottomNavigationBarItem> [
               BottomNavigationBarItem(
                   icon: Icon(Icons.access_time_outlined),
@@ -51,7 +54,7 @@ class _MyAppState extends State<MyApp> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.settings),
                 label: 'Settings',
-                )
+              )
           ],
         ),
       ),

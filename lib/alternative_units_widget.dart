@@ -22,7 +22,6 @@ class AlternativeUnitsWidget extends StatefulWidget {
 class _AlternativeUnitsWidgetState extends State<AlternativeUnitsWidget> {
   Duration remainingTime = const Duration(hours: 0);
   late Timer _timer;
-  bool isTimerFinished = false;
 
   void stopCountdown() {
     if (_timer.isActive) {
@@ -43,7 +42,6 @@ class _AlternativeUnitsWidgetState extends State<AlternativeUnitsWidget> {
         timer.cancel();
         stopCountdown();
         remainingTime = const Duration(days: -1);
-        isTimerFinished = true;
       }
     });
   }
@@ -111,12 +109,12 @@ class _AlternativeUnitsWidgetState extends State<AlternativeUnitsWidget> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             "Alternative Time Units:",
             style: TextStyle(
               fontSize: 18.0,
               fontWeight: FontWeight.normal,
-              color: isTimerFinished ? Colors.green : Colors.white,
+              color:Colors.white,
             ),
           ),
           const SizedBox(height: 10),
