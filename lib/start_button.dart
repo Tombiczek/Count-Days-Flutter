@@ -197,7 +197,7 @@ class _StartButtonState extends State<StartButton> {
                   ],
                 ),
                 const SizedBox(
-                  height: 80,
+                  height: 60,
                   child: Text(
                     'Add End Date',
                     style: TextStyle(

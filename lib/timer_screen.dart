@@ -109,11 +109,6 @@ Widget build(BuildContext context) {
     backgroundColor: const Color.fromARGB(255, 0, 0, 0),
     appBar: AppBar(
       backgroundColor: const Color.fromARGB(255, 0, 0, 0),
-      titleTextStyle: const TextStyle(
-        color: Colors.white,
-        fontSize: 17,
-        fontWeight: FontWeight.bold,
-      ),
       toolbarHeight: 35,
       actions: <Widget>[
         TextButton(
