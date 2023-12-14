@@ -116,7 +116,7 @@ class _StartButtonState extends State<StartButton> {
           ),
         ),
         child: const Text(
-          'Dotknij,\n aby dodać\n licznik',
+          'Tap to\n Count Days',
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Color.fromARGB(255, 142, 142, 147),
@@ -187,7 +187,7 @@ class _StartButtonState extends State<StartButton> {
                 const SizedBox(
                   height: 80,
                   child: Text(
-                    'Dodaj licznik',
+                    'Add End Date',
                     style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,

@@ -46,11 +46,11 @@ class _MyAppState extends State<MyApp> {
             items: const <BottomNavigationBarItem> [
               BottomNavigationBarItem(
                   icon: Icon(Icons.access_time_outlined),
-                  label: 'Licznik',
+                  label: 'Count Days',
                   ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.settings),
-                label: 'Ustawienia',
+                label: 'Settings',
                 )
           ],
         ),

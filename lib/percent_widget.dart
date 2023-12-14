@@ -21,7 +21,7 @@ class _PercentWidget extends State<PercentWidget>{
   @override
   void initState() {
     super.initState();
-
+    percentage = calculatePercentage();
     _timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) {
       setState(() {
         percentage = calculatePercentage();
@@ -60,7 +60,7 @@ double calculatePercentage() {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: LinearPercentIndicator(
-              width: 330,
+              width: 373,
               lineHeight: 20.0,
               animation: false,
               percent: percentage,

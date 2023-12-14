@@ -20,7 +20,7 @@ class Settings extends StatelessWidget {
             height: 40,
             width: 400,
             child: const Text(
-              'Ustawienia',
+              'Settings',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 32,
@@ -35,7 +35,7 @@ class Settings extends StatelessWidget {
             child: Column(
               children: const [
                 Text(
-                  'v0.4.1',
+                  'v1.0.0',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 10,
