@@ -17,7 +17,7 @@ class _MyAppState extends State<MyApp> {
   int myIndex = 0;
   List<Widget> widgetList = [
     const StartScreen(),
-    const Settings()
+    const SettingsPage(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -35,6 +35,8 @@ class _MyAppState extends State<MyApp> {
           bottomNavigationBar:
           BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
+            selectedFontSize: 14,
+            unselectedFontSize: 14,
             showSelectedLabels: true,
             showUnselectedLabels: true, 
             selectedItemColor: const Color.fromARGB(255, 0, 122, 255),

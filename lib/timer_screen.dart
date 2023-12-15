@@ -111,45 +111,58 @@ Widget build(BuildContext context) {
       backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       toolbarHeight: 35,
       actions: <Widget>[
-        TextButton(
-          style: TextButton.styleFrom(
-            splashFactory: NoSplash.splashFactory,
-          ),
-          onPressed: () {
-            _bottomSheetPopUp2(context);
-          },
-          child: const Text(
-            'Start Date',
-            style: TextStyle(
-              fontSize: 17,
-              color: Colors.blue,
-              fontWeight: FontWeight.normal,
-            ),
+        Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 2),
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    splashFactory: NoSplash.splashFactory,
+                  ),
+                  onPressed: () {
+                    _bottomSheetPopUp(
+                      context,
+                      CountdownWidget(
+                        dateInit: widget.dateInit,
+                        onStopCountdown: () {},
+                        dateStart: widget.dateStart,
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    'Edit',
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 2),
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    splashFactory: NoSplash.splashFactory,
+                  ),
+                  onPressed: () {
+                    _bottomSheetPopUp2(context);
+                  },
+                  child: const Text(
+                    'Start Date',
+                    style: TextStyle(
+                      fontSize: 17,
+                      color: Colors.blue,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ],
-      leading: TextButton(
-        style: TextButton.styleFrom(
-          splashFactory: NoSplash.splashFactory,
-        ),
-        onPressed: () {
-          _bottomSheetPopUp(
-            context,
-            CountdownWidget(
-              dateInit: widget.dateInit,
-              onStopCountdown: () {},
-              dateStart: widget.dateStart,
-            ),
-          );
-        },
-        child: const Text(
-          'Edit',
-          style: TextStyle(
-            fontSize: 17,
-            fontWeight: FontWeight.normal,
-          ),
-        ),
-      ),
     ),
     body: SizedBox(
       child: Column(
