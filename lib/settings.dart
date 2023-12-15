@@ -59,10 +59,11 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               child: Column(
                 children: [
+                  const SizedBox(height: 5,),
                   Container(
                     alignment: Alignment.center,
                     width: double.infinity,
-                    height: 38,
+                    height: 35,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -95,7 +96,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   Container(
                     alignment: Alignment.center,
                     width: double.infinity,
-                    height: 38,
+                    height: 35,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -121,6 +122,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       ],
                     ),
                   ),
+                  const SizedBox(height: 5,),
                 ],
               ),
             ),
@@ -143,10 +145,11 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               child: Column(
                 children: [
+                  const SizedBox(height: 5,),
                   Container(
                     alignment: Alignment.center,
                     width: double.infinity,
-                    height: 40,
+                    height: 35,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -179,7 +182,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   Container(
                     alignment: Alignment.center,
                     width: double.infinity,
-                    height: 40,
+                    height: 35,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -190,7 +193,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           color: Colors.white,
                         ),
                         const SizedBox(width: 12),
-                        const Text("Orange Details",
+                        const Text("Orange Mode",
                         style: TextStyle(color: Colors.white)),
                         const Spacer(),
                         CupertinoSwitch(
@@ -206,6 +209,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       ],
                     ),
                   ),
+                  const SizedBox(height: 5,)
                 ],
               ),
             ),
@@ -262,7 +266,7 @@ class _SettingsPageState extends State<SettingsPage> {
             alignment: Alignment.bottomCenter,
             height: 40,
             width: 400,
-            margin: const EdgeInsets.only(top: 215),
+            margin: const EdgeInsets.only(top: 210),
             child: Column(
               children: const [
                 Text(
