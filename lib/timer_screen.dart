@@ -16,6 +16,8 @@ class Timer extends StatefulWidget {
   final DateTime dateInit;
   final DateTime dateStart;
   final Function(DateTime) updateDateStart;
+  final bool roundUp;
+  final Function(bool) updateRoundUp;
 
   const Timer({
     super.key,
@@ -26,6 +28,8 @@ class Timer extends StatefulWidget {
     required this.dateInit,
     required this.dateStart,
     required this.updateDateStart,
+    required this.roundUp,
+    required this.updateRoundUp
   });
 
   @override
@@ -128,6 +132,8 @@ Widget build(BuildContext context) {
                         dateInit: widget.dateInit,
                         onStopCountdown: () {},
                         dateStart: widget.dateStart,
+                        roundUp: widget.roundUp,
+                        updateRoundUp: widget.updateRoundUp,
                       ),
                     );
                   },
@@ -218,6 +224,8 @@ Widget build(BuildContext context) {
               dateInit: widget.dateInit,
               onStopCountdown: () {},
               dateStart: widget.dateStart,
+              roundUp: widget.roundUp,
+              updateRoundUp: widget.updateRoundUp,
             ),
           ),
           const SizedBox(height: 10),

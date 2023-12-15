@@ -7,8 +7,18 @@ class CountdownWidget extends StatefulWidget {
   final DateTime dateInit;
   final DateTime dateStart;
   final Function() onStopCountdown;
-  const CountdownWidget({super.key,required this.dateInit, required this.onStopCountdown,
-  required this.dateStart});
+  final bool roundUp;
+  final Function(bool) updateRoundUp;
+
+
+  const CountdownWidget({
+    super.key,
+    required this.dateInit, 
+    required this.onStopCountdown,
+    required this.dateStart,
+    required this.roundUp,
+    required this.updateRoundUp
+  });
 
     void stopCountdown() {
     (_countdownWidgetKey.currentState)?.stopCountdown();
@@ -65,6 +75,7 @@ Widget build(BuildContext context) {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        if(widget.roundUp)
         Text(
           "Left: ${(remainingTime.inDays + 1)} ${remainingTime.inDays == 0 ? 'day' : 'days'}",
           style: TextStyle(
@@ -72,8 +83,18 @@ Widget build(BuildContext context) {
             fontWeight: FontWeight.bold,
             color: isTimerFinished ? Colors.green : Colors.white,
           ),
+        )
+        else
+        Text(
+          "Left: ${(remainingTime.inDays)} ${remainingTime.inDays == 1 ? 'day' : 'days'}",
+          style: TextStyle(
+            fontSize: 24.0,
+            fontWeight: FontWeight.bold,
+            color: isTimerFinished ? Colors.green : Colors.white,
+          ),
         ),
-        const SizedBox(height: 10), // Set vertical spacing between Text widgets to 50 pixels
+        const SizedBox(height: 10),
+        if(widget.roundUp)
         Text(
           "Of: ${(totalTime.inDays + 1)} ${totalTime.inDays == 0 ? 'day' : 'days'}",
           style: const TextStyle(
@@ -81,12 +102,20 @@ Widget build(BuildContext context) {
             fontWeight: FontWeight.normal,
             color:Colors.white,
           ),
-        ),
+        )
+        else
+        Text(
+          "Of: ${(totalTime.inDays)} ${totalTime.inDays == 1 ? 'day' : 'days'}",
+          style: const TextStyle(
+            fontSize: 18.0,
+            fontWeight: FontWeight.normal,
+            color:Colors.white,
+          ),
+        )
       ],
     ),
   );
 }
-
 }
 GlobalKey<_CountdownWidgetState> _countdownWidgetKey = GlobalKey();
 

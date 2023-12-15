@@ -3,7 +3,14 @@ import 'package:licznik_v1/timer_screen.dart';
 import 'package:licznik_v1/start_button.dart';
 
 class StartScreen extends StatefulWidget {
-  const StartScreen({Key? key}) : super(key: key);
+  final bool roundUp;
+  final Function(bool) updateRoundUp;
+
+  const StartScreen({
+    Key? key,
+    required this.roundUp,
+    required this.updateRoundUp
+  }) : super(key: key);
 
   @override
   State<StartScreen> createState() => _StartScreenState();
@@ -65,6 +72,8 @@ class _StartScreenState extends State<StartScreen> {
                 dateInit: dateInit,
                 dateStart: dateStart,
                 updateDateStart: updateDateStart,
+                roundUp: widget.roundUp,
+                updateRoundUp: widget.updateRoundUp,
               ),
       ),
     );

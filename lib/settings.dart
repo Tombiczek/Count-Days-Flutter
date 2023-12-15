@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+  final bool roundUp;
+  final Function(bool) updateRoundUp;
+
+  const SettingsPage({
+    Key? key,
+    required this.roundUp,
+    required this.updateRoundUp
+  }) : super(key: key);
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();
@@ -12,7 +19,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   bool orange = false;
   bool darkMode = false;
-  bool roundUp = false;
+  late bool roundUp = widget.roundUp;
 
   TextStyle descStyleIOS = const TextStyle(color: CupertinoColors.inactiveGray);
 
@@ -115,6 +122,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           onChanged: (val) {
                             setState(() {
                               roundUp = val;
+                              widget.updateRoundUp(roundUp);
                             });
                           },
                         ),
