@@ -266,7 +266,7 @@ class _SettingsPageState extends State<SettingsPage> {
             child: Column(
               children: const [
                 Text(
-                  'v1.0.0',
+                  'v1.1.0-alpha',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 10,
