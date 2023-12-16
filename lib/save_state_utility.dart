@@ -69,12 +69,12 @@ class SaveStateUtility {
 
   static Future<void> saveRoundUpValue(bool value) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.setBool('boolean', value);
+  prefs.setBool('roundUp', value);
   }
 
   static Future<bool?> loadRoundUpValue() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  bool? boolean = prefs.getBool('boolean');
+  bool? boolean = prefs.getBool('roundUp');
   return boolean;
   }
 
@@ -83,12 +83,12 @@ class SaveStateUtility {
 
   static Future<void> saveOrangeValue(bool value) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.setBool('boolean', value);
+  prefs.setBool('orange', value);
   }
 
   static Future<bool?> loadOrangeValue() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  bool? boolean = prefs.getBool('boolean');
+  bool? boolean = prefs.getBool('orange');
   return boolean;
   }
 }
