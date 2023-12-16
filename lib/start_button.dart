@@ -13,10 +13,21 @@ class StartButton extends StatefulWidget {
   final DateTime dateInit;
   final DateTime dateStart;
   final Function(DateTime) updateDateStart;
-  const StartButton({super.key, required this.height, required this.width, 
-  required this.onShowBigButtonChanged, 
-  required this.updateDisplayedTitle, required this.updateDate, required this.dateInit,
-  required this.dateStart, required this.updateDateStart});
+  final bool orange;
+
+
+  const StartButton({
+    super.key, 
+    required this.height, 
+    required this.width, 
+    required this.onShowBigButtonChanged, 
+    required this.updateDisplayedTitle, 
+    required this.updateDate, 
+    required this.dateInit,
+    required this.dateStart, 
+    required this.updateDateStart,
+    required this.orange
+  });
 
   @override
   State<StartButton> createState() => _StartButtonState();
@@ -166,10 +177,11 @@ class _StartButtonState extends State<StartButton> {
                         _textEditingController.clear();
                         passDate(null);
                       },
-                      child: const Text(
+                      child: Text(
                         'Cancel',
                         style: TextStyle(
                           fontSize: 17,
+                          color: widget.orange ? CupertinoColors.activeOrange : Colors.blue,
                           fontWeight: FontWeight.normal,
                         ),
                       ),
@@ -186,10 +198,11 @@ class _StartButtonState extends State<StartButton> {
                         widget.onShowBigButtonChanged(false);
                         Navigator.of(context).pop();
                       },
-                      child: const Text(
+                      child: Text(
                         'Done',
                         style: TextStyle(
                           fontSize: 17,
+                          color: widget.orange ? CupertinoColors.activeOrange : Colors.blue,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

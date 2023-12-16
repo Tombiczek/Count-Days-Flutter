@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:licznik_v1/settings.dart';
 import 'package:licznik_v1/start_screen.dart';
 
@@ -16,17 +17,20 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   int myIndex = 0;
   bool roundUp = true;
+  bool orange = false;
 
   @override
   Widget build(BuildContext context) {
     List<Widget> widgetList = [
       StartScreen(
         roundUp: roundUp,
-        updateRoundUp: updateRoundUp,
+        orange: orange,
       ),
       SettingsPage(
         roundUp: roundUp,
         updateRoundUp: updateRoundUp,
+        orange: orange,
+        updateOrange: updateOrange,
       ),
     ];
 
@@ -48,7 +52,7 @@ class _MyAppState extends State<MyApp> {
           unselectedFontSize: 14,
           showSelectedLabels: true,
           showUnselectedLabels: true,
-          selectedItemColor: const Color.fromARGB(255, 0, 122, 255),
+          selectedItemColor: orange ? CupertinoColors.activeOrange : const Color.fromARGB(255, 0, 122, 255),
           unselectedItemColor: const Color.fromARGB(255, 126, 126, 126),
           onTap: (index) {
             setState(() {
@@ -75,6 +79,12 @@ class _MyAppState extends State<MyApp> {
   void updateRoundUp(bool newValue) {
     setState(() {
       roundUp = newValue;
+    });
+  }
+
+  void updateOrange(bool newValue){
+    setState(() {
+      orange = newValue;
     });
   }
 }

@@ -1,8 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
+
 import 'package:licznik_v1/countdown_widget.dart';
 import 'package:licznik_v1/percent_widget.dart';
 import 'package:licznik_v1/save_state_utility.dart';
@@ -17,7 +17,7 @@ class Timer extends StatefulWidget {
   final DateTime dateStart;
   final Function(DateTime) updateDateStart;
   final bool roundUp;
-  final Function(bool) updateRoundUp;
+  final bool orange;
 
   const Timer({
     super.key,
@@ -29,7 +29,7 @@ class Timer extends StatefulWidget {
     required this.dateStart,
     required this.updateDateStart,
     required this.roundUp,
-    required this.updateRoundUp
+    required this.orange
   });
 
   @override
@@ -133,14 +133,14 @@ Widget build(BuildContext context) {
                         onStopCountdown: () {},
                         dateStart: widget.dateStart,
                         roundUp: widget.roundUp,
-                        updateRoundUp: widget.updateRoundUp,
                       ),
                     );
                   },
-                  child: const Text(
+                  child: Text(
                     'Edit',
                     style: TextStyle(
                       fontSize: 17,
+                      color: widget.orange ? CupertinoColors.activeOrange : Colors.blue,
                       fontWeight: FontWeight.normal,
                     ),
                   ),
@@ -155,11 +155,11 @@ Widget build(BuildContext context) {
                   onPressed: () {
                     _bottomSheetPopUp2(context);
                   },
-                  child: const Text(
+                  child: Text(
                     'Start Date',
                     style: TextStyle(
                       fontSize: 17,
-                      color: Colors.blue,
+                      color: widget.orange ? CupertinoColors.activeOrange : Colors.blue,
                       fontWeight: FontWeight.normal,
                     ),
                   ),
@@ -225,13 +225,13 @@ Widget build(BuildContext context) {
               onStopCountdown: () {},
               dateStart: widget.dateStart,
               roundUp: widget.roundUp,
-              updateRoundUp: widget.updateRoundUp,
             ),
           ),
           const SizedBox(height: 10),
           PercentWidget(
             dateStart: widget.dateStart,
             dateFinish: widget.dateInit,
+            orange: widget.orange,
           ),
           const SizedBox(height: 10),
           Align(
@@ -275,10 +275,11 @@ Widget build(BuildContext context) {
                       _textEditingController.text = widget.globalTitle;
                       Navigator.of(context).pop();
                     },
-                    child: const Text(
+                    child: Text(
                       'Cancel',
                       style: TextStyle(
                         fontSize: 17,
+                        color: widget.orange ? CupertinoColors.activeOrange : Colors.blue,
                         fontWeight: FontWeight.normal,
                       ),
                     ),
@@ -296,10 +297,11 @@ Widget build(BuildContext context) {
                       }
                       Navigator.of(context).pop();
                     },
-                    child: const Text(
+                    child: Text(
                       'Done',
                       style: TextStyle(
                         fontSize: 17,
+                        color: widget.orange ? CupertinoColors.activeOrange : Colors.blue,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -413,10 +415,11 @@ Widget build(BuildContext context) {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: const Text(
+                    child: Text(
                       'Cancel',
                       style: TextStyle(
                         fontSize: 17,
+                        color: widget.orange ? CupertinoColors.activeOrange : Colors.blue,
                         fontWeight: FontWeight.normal,
                       ),
                     ),
@@ -428,10 +431,11 @@ Widget build(BuildContext context) {
                       _saveDateStart(startDatePass);
                       Navigator.of(context).pop();
                     },
-                    child: const Text(
+                    child: Text(
                       'Done',
                       style: TextStyle(
                         fontSize: 17,
+                        color: widget.orange ? CupertinoColors.activeOrange : Colors.blue,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

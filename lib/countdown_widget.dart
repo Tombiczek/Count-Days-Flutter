@@ -8,7 +8,6 @@ class CountdownWidget extends StatefulWidget {
   final DateTime dateStart;
   final Function() onStopCountdown;
   final bool roundUp;
-  final Function(bool) updateRoundUp;
 
 
   const CountdownWidget({
@@ -17,7 +16,6 @@ class CountdownWidget extends StatefulWidget {
     required this.onStopCountdown,
     required this.dateStart,
     required this.roundUp,
-    required this.updateRoundUp
   });
 
     void stopCountdown() {

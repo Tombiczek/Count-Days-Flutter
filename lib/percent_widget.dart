@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 
 class PercentWidget extends StatefulWidget{
   final DateTime dateStart;
   final DateTime dateFinish;
+  final bool orange;
 
-  const PercentWidget({Key? key, required this.dateStart, required this.dateFinish}) : super(key: key);
+  const PercentWidget({
+    Key? key, 
+    required this.dateStart, 
+    required this.dateFinish,
+    required this.orange
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _PercentWidget();
@@ -65,7 +72,9 @@ double calculatePercentage() {
               animation: false,
               percent: percentage,
               backgroundColor: const Color.fromARGB(255, 28, 28, 30),
-              progressColor: isTimerFinished ? Colors.green : Colors.blue,
+              progressColor: widget.orange ? 
+              (isTimerFinished ? Colors.green : CupertinoColors.activeOrange) : 
+              (isTimerFinished ? Colors.green : Colors.blue),
               barRadius: const Radius.circular(10),
               center: Text(
                 "${(percentage * 100).toStringAsFixed(1)}%",

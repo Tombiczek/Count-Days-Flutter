@@ -4,11 +4,15 @@ import 'package:flutter/cupertino.dart';
 class SettingsPage extends StatefulWidget {
   final bool roundUp;
   final Function(bool) updateRoundUp;
+  final bool orange;
+  final Function(bool) updateOrange;
 
   const SettingsPage({
     Key? key,
     required this.roundUp,
-    required this.updateRoundUp
+    required this.updateRoundUp,
+    required this.orange,
+    required this.updateOrange
   }) : super(key: key);
 
   @override
@@ -17,9 +21,9 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
 
-  bool orange = false;
-  bool darkMode = false;
   late bool roundUp = widget.roundUp;
+  bool darkMode = false;
+  late bool orange = widget.orange;
 
   TextStyle descStyleIOS = const TextStyle(color: CupertinoColors.inactiveGray);
 
@@ -139,7 +143,7 @@ class _SettingsPageState extends State<SettingsPage> {
           const Align(alignment: Alignment.topLeft,
           child: Padding(
             padding: EdgeInsets.only(left: 25),
-          child: Text("Appearence",
+          child: Text("Appearance",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: Colors.white),
             ),),),         
           const SizedBox(height: 8),
@@ -201,7 +205,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           color: Colors.white,
                         ),
                         const SizedBox(width: 12),
-                        const Text("Orange Mode",
+                        const Text("Orange Theme",
                         style: TextStyle(color: Colors.white)),
                         const Spacer(),
                         CupertinoSwitch(
@@ -210,6 +214,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           onChanged: (val) {
                             setState(() {
                               orange = val;
+                              widget.updateOrange(orange);
                             });
                           },
                         ),

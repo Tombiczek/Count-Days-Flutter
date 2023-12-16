@@ -4,12 +4,12 @@ import 'package:licznik_v1/start_button.dart';
 
 class StartScreen extends StatefulWidget {
   final bool roundUp;
-  final Function(bool) updateRoundUp;
+  final bool orange;
 
   const StartScreen({
     Key? key,
     required this.roundUp,
-    required this.updateRoundUp
+    required this.orange
   }) : super(key: key);
 
   @override
@@ -59,6 +59,7 @@ class _StartScreenState extends State<StartScreen> {
                 dateInit: dateInit,
                 dateStart: dateStart,
                 updateDateStart: updateDateStart,
+                orange: widget.orange,
               )
             : Timer(
                 onShowBigButtonChanged: (newValue) {
@@ -73,7 +74,7 @@ class _StartScreenState extends State<StartScreen> {
                 dateStart: dateStart,
                 updateDateStart: updateDateStart,
                 roundUp: widget.roundUp,
-                updateRoundUp: widget.updateRoundUp,
+                orange: widget.orange,
               ),
       ),
     );
