@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'package:licznik_v1/save_state_utility.dart';
+
 class SettingsPage extends StatefulWidget {
   final bool roundUp;
   final Function(bool) updateRoundUp;
@@ -21,11 +23,45 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
 
+    @override
+  void initState() {
+    super.initState();
+    _loadRoundUpValue();
+    _loadOrangeValue();
+  }
+
   late bool roundUp = widget.roundUp;
   bool darkMode = false;
   late bool orange = widget.orange;
 
-  TextStyle descStyleIOS = const TextStyle(color: CupertinoColors.inactiveGray);
+
+  Future<void> _loadRoundUpValue() async {
+    bool? loadedRoundUp = await SaveStateUtility.loadRoundUpValue();
+    if (loadedRoundUp != null) {
+      setState(() {
+        roundUp = loadedRoundUp;
+      });
+      widget.updateRoundUp(loadedRoundUp);
+    }
+  }
+
+  Future<void> _loadOrangeValue() async {
+    bool? loadedOrange = await SaveStateUtility.loadOrangeValue();
+    if (loadedOrange != null) {
+      setState(() {
+        orange = loadedOrange;
+      });
+      widget.updateOrange(loadedOrange);
+    }
+  }
+
+  Future<void> _saveRoundUpValue(bool value) async {
+    await SaveStateUtility.saveRoundUpValue(value);
+  }
+
+  Future<void> _saveOrangeValue(bool value) async {
+    await SaveStateUtility.saveOrangeValue(value);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,26 +114,26 @@ class _SettingsPageState extends State<SettingsPage> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const SizedBox(width: 12),
-                        const Icon(
+                      children: const [
+                        SizedBox(width: 12),
+                        Icon(
                           CupertinoIcons.textformat_alt,
                           color: Colors.white,
                         ),
-                        const SizedBox(width: 12),
-                        const Text("Language",
+                        SizedBox(width: 12),
+                        Text("Language",
                         style: TextStyle(color: Colors.white)),
-                        const Spacer(),
+                        Spacer(),
                         Text(
                           "English",
-                          style: descStyleIOS,
+                          style: TextStyle(color: CupertinoColors.inactiveGray)
                         ),
-                        const SizedBox(width: 5),
-                        const Icon(
+                        SizedBox(width: 5),
+                        Icon(
                           CupertinoIcons.right_chevron,
                           color: CupertinoColors.white,
                         ),
-                        const SizedBox(width: 8),
+                        SizedBox(width: 8),
                       ],
                     ),
                   ),
@@ -127,6 +163,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             setState(() {
                               roundUp = val;
                               widget.updateRoundUp(roundUp);
+                              _saveRoundUpValue(roundUp);
                             });
                           },
                         ),
@@ -142,11 +179,14 @@ class _SettingsPageState extends State<SettingsPage> {
           const SizedBox(height: 25),
           const Align(alignment: Alignment.topLeft,
           child: Padding(
-            padding: EdgeInsets.only(left: 25),
+            padding: EdgeInsets.only(left: 28),
           child: Text("Appearance",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: Colors.white),
+              style: TextStyle(fontSize: 14, 
+              fontWeight: FontWeight.normal, 
+              color: Color.fromARGB(255, 134, 134, 141)
+              ),
             ),),),         
-          const SizedBox(height: 8),
+          const SizedBox(height: 6),
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: Container(
@@ -168,18 +208,18 @@ class _SettingsPageState extends State<SettingsPage> {
                       children: [
                         const SizedBox(width: 12),
                         const Icon(
-                          CupertinoIcons.lightbulb_slash,
+                          CupertinoIcons.lightbulb,
                           color: Colors.white,
                         ),
                         const SizedBox(width: 12),
-                        const Text("Dark Mode",
+                        const Text("Light Mode",
                         style: TextStyle(color: Colors.white)),
                         const Spacer(),
                         CupertinoSwitch(
                           value: darkMode,
                           onChanged: (val) {
                             setState(() {
-                              darkMode = val;
+                              // implement this
                             });
                           },
                         ),
@@ -215,6 +255,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             setState(() {
                               orange = val;
                               widget.updateOrange(orange);
+                              _saveOrangeValue(orange);
                             });
                           },
                         ),
@@ -231,11 +272,14 @@ class _SettingsPageState extends State<SettingsPage> {
           const SizedBox(height: 25),
           const Align(alignment: Alignment.topLeft,
           child: Padding(
-            padding: EdgeInsets.only(left: 25),
+            padding: EdgeInsets.only(left: 28),
           child: Text("Info",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: Colors.white),
+              style: TextStyle(fontSize: 14, 
+              fontWeight: FontWeight.normal, 
+              color: Color.fromARGB(255, 134, 134, 141)
+              ),
             ),),),         
-          const SizedBox(height: 8),
+          const SizedBox(height: 6),
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: Container(
@@ -260,7 +304,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           color: Colors.white,
                         ),
                         SizedBox(width: 12),
-                        Text("Open Source Licenses",
+                        Text("Credits",
                         style: TextStyle(color: Colors.white)),
                         Spacer(),
                         Icon(

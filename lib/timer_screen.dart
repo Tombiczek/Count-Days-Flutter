@@ -489,7 +489,7 @@ Widget build(BuildContext context) {
                         ),
                         backgroundColor: const Color.fromARGB(255, 44, 44, 46)),
                     child: const Text(
-                      'Set to Today',
+                      'Set to Now',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color.fromARGB(255, 0, 255, 0),

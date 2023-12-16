@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 
@@ -68,20 +67,37 @@ double calculatePercentage() {
             padding: const EdgeInsets.all(10.0),
             child: LinearPercentIndicator(
               width: 373,
+              clipLinearGradient: true,
+              linearGradient: LinearGradient(
+                colors: widget.orange ? [
+                  Colors.red,
+                  Colors.orange,
+                  Colors.yellow,
+                  Colors.green,
+                  Colors.blue,
+                  Colors.indigo,
+                  Colors.purple
+                ] : const [
+                Color.fromARGB(255, 0, 31, 63),    // Dark Blue
+                Color.fromARGB(255, 0, 90, 156),   // Royal Blue
+                Color.fromARGB(255, 0, 116, 217),  // Deep Sky Blue
+                Color.fromARGB(255, 0, 168, 232),  // Sky Blue
+                Color.fromARGB(255, 91, 192, 235), // Baby Blue
+                Color.fromARGB(255, 174, 223, 247) // Powder Blue
+                ],
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,),
               lineHeight: 20.0,
               animation: false,
               percent: percentage,
               backgroundColor: const Color.fromARGB(255, 28, 28, 30),
-              progressColor: widget.orange ? 
-              (isTimerFinished ? Colors.green : CupertinoColors.activeOrange) : 
-              (isTimerFinished ? Colors.green : Colors.blue),
               barRadius: const Radius.circular(10),
               center: Text(
                 "${(percentage * 100).toStringAsFixed(1)}%",
                 style: const TextStyle(color: Colors.white),
               ),
             ),
-          ),
+          )
         ],
       ),
     );

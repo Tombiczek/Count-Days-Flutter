@@ -63,4 +63,32 @@ class SaveStateUtility {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove(titleKey);
   }
+
+
+   // ROUND UP: SAVE, LOAD
+
+  static Future<void> saveRoundUpValue(bool value) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setBool('boolean', value);
+  }
+
+  static Future<bool?> loadRoundUpValue() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool? boolean = prefs.getBool('boolean');
+  return boolean;
+  }
+
+
+  // ORANGE: SAVE, LOAD
+
+  static Future<void> saveOrangeValue(bool value) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setBool('boolean', value);
+  }
+
+  static Future<bool?> loadOrangeValue() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool? boolean = prefs.getBool('boolean');
+  return boolean;
+  }
 }
