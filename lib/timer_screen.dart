@@ -326,7 +326,7 @@ Widget build(BuildContext context) {
                   decoration: BoxDecoration(
                       color: Theme.of(context).canvasColor,
                       borderRadius: BorderRadius.circular(12)),
-                  style: TextStyle(color: Theme.of(context).focusColor,),
+                  style: TextStyle(color: Theme.of(context).cardColor),
                 ),
               ),
               SizedBox(
