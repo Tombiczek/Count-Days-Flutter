@@ -90,11 +90,11 @@ double calculatePercentage() {
               lineHeight: 20.0,
               animation: false,
               percent: percentage,
-              backgroundColor: const Color.fromARGB(255, 28, 28, 30),
+              backgroundColor: Theme.of(context).primaryColor,
               barRadius: const Radius.circular(10),
               center: Text(
                 "${(percentage * 100).toStringAsFixed(1)}%",
-                style: const TextStyle(color: Colors.white),
+                style: TextStyle(color: Theme.of(context).cardColor,),
               ),
             ),
           )

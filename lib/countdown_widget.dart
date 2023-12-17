@@ -79,7 +79,7 @@ Widget build(BuildContext context) {
           style: TextStyle(
             fontSize: 24.0,
             fontWeight: FontWeight.bold,
-            color: isTimerFinished ? Colors.green : Colors.white,
+            color: isTimerFinished ? Colors.green : Theme.of(context).cardColor,
           ),
         )
         else
@@ -88,26 +88,26 @@ Widget build(BuildContext context) {
           style: TextStyle(
             fontSize: 24.0,
             fontWeight: FontWeight.bold,
-            color: isTimerFinished ? Colors.green : Colors.white,
+            color: isTimerFinished ? Colors.green : Theme.of(context).cardColor,
           ),
         ),
         const SizedBox(height: 10),
         if(widget.roundUp)
         Text(
           "Of: ${(totalTime.inDays + 1)} ${totalTime.inDays == 0 ? 'day' : 'days'}",
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 18.0,
             fontWeight: FontWeight.normal,
-            color:Colors.white,
+            color:Theme.of(context).cardColor,
           ),
         )
         else
         Text(
           "Of: ${(totalTime.inDays)} ${totalTime.inDays == 1 ? 'day' : 'days'}",
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 18.0,
             fontWeight: FontWeight.normal,
-            color:Colors.white,
+            color:Theme.of(context).cardColor,
           ),
         )
       ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:licznik_v1/settings.dart';
 import 'package:licznik_v1/start_screen.dart';
+import 'package:licznik_v1/app_themes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +18,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   int myIndex = 0;
   bool roundUp = true;
+  bool theme = false;
   bool orange = false;
 
   @override
@@ -29,17 +31,17 @@ class _MyAppState extends State<MyApp> {
       SettingsPage(
         roundUp: roundUp,
         updateRoundUp: updateRoundUp,
+        theme: theme,
+        updateTheme: updateTheme,
         orange: orange,
         updateOrange: updateOrange,
       ),
     ];
 
     return MaterialApp(
-      theme: ThemeData(
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-        hoverColor: Colors.transparent,
-      ),
+      theme: AppThemes.lightTheme,
+      darkTheme: AppThemes.darkTheme,
+      themeMode: theme ? ThemeMode.light : ThemeMode.dark,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: IndexedStack(
@@ -60,7 +62,6 @@ class _MyAppState extends State<MyApp> {
             });
           },
           currentIndex: myIndex,
-          backgroundColor: const Color.fromARGB(255, 0, 0, 0), // kolor NavBaru
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.access_time_outlined),
@@ -79,6 +80,12 @@ class _MyAppState extends State<MyApp> {
   void updateRoundUp(bool newValue) {
     setState(() {
       roundUp = newValue;
+    });
+  }
+
+  void updateTheme(bool newValue){
+    setState(() {
+      theme = newValue;
     });
   }
 

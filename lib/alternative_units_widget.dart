@@ -109,57 +109,57 @@ class _AlternativeUnitsWidgetState extends State<AlternativeUnitsWidget> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             "Alternative Time Units:",
             style: TextStyle(
               fontSize: 18.0,
               fontWeight: FontWeight.normal,
-              color:Colors.white,
+              color:Theme.of(context).cardColor,
             ),
           ),
           const SizedBox(height: 10),
           Text(
             seconds(remainingTime),
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 22.0,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: Theme.of(context).cardColor,
             ),
           ),
           const SizedBox(height: 10),
           Text(
             minutes(remainingTime),
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 22.0,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: Theme.of(context).cardColor,
             ),
           ),
           const SizedBox(height: 10),
           Text(
             hours(remainingTime),
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 22.0,
               fontWeight: FontWeight.bold,
-              color:Colors.white,
+              color:Theme.of(context).cardColor,
             ),
           ),
           const SizedBox(height: 10),
           Text(
             days(remainingTime),
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 22.0,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: Theme.of(context).cardColor,
             ),
           ),
           const SizedBox(height: 10),
           Text(
             weeks(remainingTime),
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 22.0,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: Theme.of(context).cardColor,
             ),
           ),          
         ],

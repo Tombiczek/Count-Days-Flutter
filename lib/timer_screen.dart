@@ -110,9 +110,7 @@ Widget build(BuildContext context) {
   String formattedStartDate = formatter.format(widget.dateStart);
 
   return Scaffold(
-    backgroundColor: const Color.fromARGB(255, 0, 0, 0),
     appBar: AppBar(
-      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
       toolbarHeight: 35,
       actions: <Widget>[
         Expanded(
@@ -175,32 +173,30 @@ Widget build(BuildContext context) {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            height: 55,
-            decoration: const BoxDecoration(
-              border: Border(
-                bottom: BorderSide(color: Color.fromARGB(255, 48, 48, 51)),
-              ),
-            ),
-            margin: const EdgeInsets.only(left: 20.0),
-            child: const Align(
-              alignment: Alignment.centerLeft,
-                child: Text('Count Days',
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white
+          const Padding(
+            padding: EdgeInsets.only(left: 20),
+            child: SizedBox(
+              height: 35,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Count Days',
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
           ),
+          const Divider(indent: 20, thickness: 0.5,),
           const SizedBox(height: 15),
           SizedBox(
             height: 80,
             width: 360,
             child: Container(
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 28, 28, 30),
+                color: Theme.of(context).primaryColor,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Center(
@@ -208,10 +204,10 @@ Widget build(BuildContext context) {
                   globalTitle.isEmpty
                       ? "$formattedStartDate - $formattedDate"
                       : globalTitle,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: Theme.of(context).cardColor,
                   ),
                 ),
               ),
@@ -256,7 +252,7 @@ Widget build(BuildContext context) {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
       ),
-      backgroundColor: const Color.fromARGB(255, 28, 28, 30),
+      backgroundColor: Theme.of(context).focusColor,
       isDismissible: false,
       isScrollControlled: true,
       builder: (context) => SingleChildScrollView(
@@ -308,14 +304,14 @@ Widget build(BuildContext context) {
                   ),
                 ],
               ),
-              const SizedBox(
+              SizedBox(
                 height: 60,
                 child: Text(
                   'Edit End Date',
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: Theme.of(context).cardColor,
                   ),
                 ),
               ),
@@ -328,16 +324,17 @@ Widget build(BuildContext context) {
                   placeholderStyle: const TextStyle(
                       color: Color.fromARGB(255, 134, 134, 141)),
                   decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 44, 44, 46),
+                      color: Theme.of(context).canvasColor,
                       borderRadius: BorderRadius.circular(12)),
-                  style: const TextStyle(color: Colors.white),
+                  style: TextStyle(color: Theme.of(context).focusColor,),
                 ),
               ),
               SizedBox(
                 height: 200,
                 width: 360,
                 child: CupertinoTheme(
-                  data: const CupertinoThemeData(brightness: Brightness.dark),
+                  data: CupertinoThemeData(
+                    brightness: Theme.of(context).brightness),
                   child: CupertinoDatePicker(
                       minimumDate: DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 1),
                       maximumDate: DateTime.now().add(const Duration(days: 36500)),
@@ -371,7 +368,7 @@ Widget build(BuildContext context) {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        backgroundColor: const Color.fromARGB(255, 44, 44, 46)),
+                        backgroundColor: Theme.of(context).canvasColor,),
                     child: const Text(
                       'Delete',
                       textAlign: TextAlign.center,
@@ -396,7 +393,7 @@ Widget build(BuildContext context) {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
       ),
-      backgroundColor: const Color.fromARGB(255, 28, 28, 30),
+      backgroundColor: Theme.of(context).focusColor,
       isDismissible: false,
       isScrollControlled: true,
       builder: (context) => SingleChildScrollView(
@@ -442,14 +439,14 @@ Widget build(BuildContext context) {
                   ),
                 ],
               ),
-              const SizedBox(
+              SizedBox(
                 height: 40,
                 child: Text(
                   'Set Start Date',
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: Theme.of(context).cardColor,
                   ),
                 ),
               ),
@@ -457,7 +454,8 @@ Widget build(BuildContext context) {
                 height: 200,
                 width: 360,
                 child: CupertinoTheme(
-                  data: const CupertinoThemeData(brightness: Brightness.dark),
+                  data: CupertinoThemeData(
+                    brightness: Theme.of(context).brightness),
                   child: CupertinoDatePicker(
                       minimumDate: DateTime.now().subtract(const Duration(days: 36500)),
                       maximumDate: DateTime.now(),
@@ -487,7 +485,7 @@ Widget build(BuildContext context) {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        backgroundColor: const Color.fromARGB(255, 44, 44, 46)),
+                        backgroundColor: Theme.of(context).canvasColor,),
                     child: const Text(
                       'Set to Now',
                       textAlign: TextAlign.center,

@@ -43,7 +43,6 @@ class _StartScreenState extends State<StartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 28, 28, 30),
       body: Center(
         child: showBigButton
             ? StartButton(

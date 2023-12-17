@@ -108,10 +108,7 @@ class _StartButtonState extends State<StartButton> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:const Color.fromARGB(255, 0, 0, 0),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 0, 0, 0), // kolor AppBaru
-        titleTextStyle: const TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),
         toolbarHeight: 35,
         title: const Text("Count Days"),
         ),
@@ -156,7 +153,7 @@ class _StartButtonState extends State<StartButton> {
       context: context,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(12))),
-      backgroundColor: const Color.fromARGB(255, 28, 28, 30),
+      backgroundColor: Theme.of(context).focusColor,
       isDismissible: false,
       isScrollControlled: true,
       builder: (context) => SingleChildScrollView(
@@ -209,14 +206,14 @@ class _StartButtonState extends State<StartButton> {
                     ),
                   ],
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 60,
                   child: Text(
                     'Add End Date',
                     style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Theme.of(context).cardColor,
                     ),
                   ),
                 ),
@@ -230,18 +227,18 @@ class _StartButtonState extends State<StartButton> {
                         color: Color.fromARGB(255, 134, 134, 141)
                       ),
                       decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 44, 44, 46),
+                        color: Theme.of(context).canvasColor,
                         borderRadius: BorderRadius.circular(12)
                       ),
-                      style: const TextStyle(color: Colors.white),
+                      style: TextStyle(color: Theme.of(context).cardColor,),
                     ),
                 ),
                 SizedBox(
                   height: 200,
                   width: 360,
                   child: CupertinoTheme(
-                    data: const CupertinoThemeData(
-                      brightness: Brightness.dark),
+                    data: CupertinoThemeData(
+                      brightness: Theme.of(context).brightness),
                     child: CupertinoDatePicker(
                       minimumDate: DateTime(DateTime.now().year, DateTime.now().month, 
                       DateTime.now().day + 1),

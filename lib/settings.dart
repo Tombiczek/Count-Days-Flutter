@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-
 import 'package:licznik_v1/save_state_utility.dart';
 
 class SettingsPage extends StatefulWidget {
   final bool roundUp;
   final Function(bool) updateRoundUp;
+  final bool theme;
+  final Function(bool) updateTheme;
   final bool orange;
   final Function(bool) updateOrange;
 
@@ -13,6 +14,8 @@ class SettingsPage extends StatefulWidget {
     Key? key,
     required this.roundUp,
     required this.updateRoundUp,
+    required this.theme,
+    required this.updateTheme,
     required this.orange,
     required this.updateOrange
   }) : super(key: key);
@@ -28,10 +31,11 @@ class _SettingsPageState extends State<SettingsPage> {
     super.initState();
     _loadRoundUpValue();
     _loadOrangeValue();
+    _loadThemeValue();
   }
 
   late bool roundUp = widget.roundUp;
-  bool darkMode = false;
+  late bool theme = widget.theme;
   late bool orange = widget.orange;
 
 
@@ -42,6 +46,16 @@ class _SettingsPageState extends State<SettingsPage> {
         roundUp = loadedRoundUp;
       });
       widget.updateRoundUp(loadedRoundUp);
+    }
+  }
+
+  Future<void> _loadThemeValue() async {
+    bool? loadedTheme = await SaveStateUtility.loadThemeValue();
+    if (loadedTheme != null) {
+      setState(() {
+        theme = loadedTheme;
+      });
+      widget.updateTheme(loadedTheme);
     }
   }
 
@@ -59,42 +73,41 @@ class _SettingsPageState extends State<SettingsPage> {
     await SaveStateUtility.saveRoundUpValue(value);
   }
 
+  Future<void> _saveThemeValue(bool value) async {
+    await SaveStateUtility.saveThemeValue(value);
+  }
+
   Future<void> _saveOrangeValue(bool value) async {
     await SaveStateUtility.saveOrangeValue(value);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+    return Theme(
+      data: Theme.of(context),
+    child: Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 0, 0, 0),
         toolbarHeight: 35,
       ),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 20),
-            child: Container(
-              height: 55,
-              decoration: const BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(color: Color.fromARGB(255, 48, 48, 51)),
-                ),
-              ),
-              child: const Align(
+          const Padding(
+            padding: EdgeInsets.only(left: 20),
+            child: SizedBox(
+              height: 35,
+              child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Settings',
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
                   ),
                 ),
               ),
             ),
           ),
+          const Divider(indent: 20, thickness: 0.5,),
           const SizedBox(height: 25),
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
@@ -102,7 +115,7 @@ class _SettingsPageState extends State<SettingsPage> {
               width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color:const Color.fromARGB(255, 28, 28, 31)
+                color: Theme.of(context).primaryColor,
               ),
               child: Column(
                 children: [
@@ -114,32 +127,32 @@ class _SettingsPageState extends State<SettingsPage> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        SizedBox(width: 12),
+                      children: [
+                        const SizedBox(width: 12),
                         Icon(
                           CupertinoIcons.textformat_alt,
-                          color: Colors.white,
+                          color: Theme.of(context).cardColor,
                         ),
-                        SizedBox(width: 12),
+                        const SizedBox(width: 12),
                         Text("Language",
-                        style: TextStyle(color: Colors.white)),
-                        Spacer(),
-                        Text(
+                        style: Theme.of(context).textTheme.bodySmall),
+                        const Spacer(),
+                        const Text(
                           "English",
                           style: TextStyle(color: CupertinoColors.inactiveGray)
                         ),
-                        SizedBox(width: 5),
+                        const SizedBox(width: 5),
                         Icon(
                           CupertinoIcons.right_chevron,
-                          color: CupertinoColors.white,
+                          color: Theme.of(context).cardColor,
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                       ],
                     ),
                   ),
-                  const Divider(color: Color.fromARGB(255, 48, 48, 51),
+                  const Divider(
                   indent: 45,
-                  thickness: 1,),
+                  thickness: 1),
                   Container(
                     alignment: Alignment.center,
                     width: double.infinity,
@@ -149,13 +162,13 @@ class _SettingsPageState extends State<SettingsPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const SizedBox(width: 12),
-                        const Icon(
+                        Icon(
                           CupertinoIcons.minus_slash_plus,
-                          color: Colors.white,
+                          color: Theme.of(context).cardColor,
                         ),
                         const SizedBox(width: 12),
-                        const Text("Round Up Days",
-                        style: TextStyle(color: Colors.white)),
+                        Text("Round Up Days",
+                        style: Theme.of(context).textTheme.bodySmall),
                         const Spacer(),
                         CupertinoSwitch(
                           value: roundUp,
@@ -193,7 +206,7 @@ class _SettingsPageState extends State<SettingsPage> {
               width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color:const Color.fromARGB(255, 28, 28, 31),
+                color: Theme.of(context).primaryColor,
               ),
               child: Column(
                 children: [
@@ -207,19 +220,21 @@ class _SettingsPageState extends State<SettingsPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const SizedBox(width: 12),
-                        const Icon(
+                        Icon(
                           CupertinoIcons.lightbulb,
-                          color: Colors.white,
+                          color: Theme.of(context).cardColor,
                         ),
                         const SizedBox(width: 12),
-                        const Text("Light Mode",
-                        style: TextStyle(color: Colors.white)),
+                        Text("Light Mode",
+                        style: Theme.of(context).textTheme.bodySmall),
                         const Spacer(),
                         CupertinoSwitch(
-                          value: darkMode,
+                          value: theme,
                           onChanged: (val) {
                             setState(() {
-                              // implement this
+                              theme = val;
+                              widget.updateTheme(theme);
+                              _saveThemeValue(theme);
                             });
                           },
                         ),
@@ -228,7 +243,6 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                   ),
                   const Divider(
-                    color: Color.fromARGB(255, 48, 48, 51),
                     indent: 45,
                     thickness: 1,),
                   Container(
@@ -240,13 +254,13 @@ class _SettingsPageState extends State<SettingsPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const SizedBox(width: 12),
-                        const Icon(
+                        Icon(
                           CupertinoIcons.paintbrush,
-                          color: Colors.white,
+                          color: Theme.of(context).cardColor,
                         ),
                         const SizedBox(width: 12),
-                        const Text("Orange Theme",
-                        style: TextStyle(color: Colors.white)),
+                        Text("Orange Theme",
+                        style: Theme.of(context).textTheme.bodySmall),
                         const Spacer(),
                         CupertinoSwitch(
                           value: orange,
@@ -286,7 +300,7 @@ class _SettingsPageState extends State<SettingsPage> {
               width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color:const Color.fromARGB(255, 28, 28, 31)
+                color:Theme.of(context).primaryColor,
               ),
               child: Column(
                 children: [
@@ -297,21 +311,21 @@ class _SettingsPageState extends State<SettingsPage> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        SizedBox(width: 12),
+                      children: [
+                        const SizedBox(width: 12),
                         Icon(
-                          CupertinoIcons.doc_on_doc,
-                          color: Colors.white,
+                          CupertinoIcons.creditcard,
+                          color: Theme.of(context).cardColor,
                         ),
-                        SizedBox(width: 12),
-                        Text("Credits",
-                        style: TextStyle(color: Colors.white)),
-                        Spacer(),
+                        const SizedBox(width: 12),
+                        Text("Support Count Days",
+                        style: Theme.of(context).textTheme.bodySmall),
+                        const Spacer(),
                         Icon(
                           CupertinoIcons.right_chevron,
-                          color: CupertinoColors.white,
+                          color: Theme.of(context).cardColor,
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                       ],
                     ),
                   ),
@@ -323,13 +337,12 @@ class _SettingsPageState extends State<SettingsPage> {
             alignment: Alignment.bottomCenter,
             height: 40,
             width: 400,
-            margin: const EdgeInsets.only(top: 210),
+            margin: const EdgeInsets.only(top: 190),
             child: Column(
               children: const [
                 Text(
                   'v1.1.0-alpha',
                   style: TextStyle(
-                    color: Colors.white,
                     fontSize: 10,
                     fontWeight: FontWeight.bold,
                   ),
@@ -338,7 +351,6 @@ class _SettingsPageState extends State<SettingsPage> {
                 Text(
                   'GitHub: Tombiczek',
                   style: TextStyle(
-                    color: Colors.white,
                     fontSize: 10,
                     fontWeight: FontWeight.normal,
                   ),
@@ -347,7 +359,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ),
         ],
-      ),
+      ),)
     );
   }
 }
