@@ -337,11 +337,11 @@ class _SettingsPageState extends State<SettingsPage> {
             alignment: Alignment.bottomCenter,
             height: 40,
             width: 400,
-            margin: const EdgeInsets.only(top: 190),
+            margin: const EdgeInsets.only(top: 224),
             child: Column(
               children: const [
                 Text(
-                  'v1.1.0-alpha',
+                  'v1.1.0',
                   style: TextStyle(
                     fontSize: 10,
                     fontWeight: FontWeight.bold,
