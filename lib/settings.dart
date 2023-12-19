@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:licznik_v1/save_state_utility.dart';
+import 'package:licznik_v1/support_me.dart';
 
 class SettingsPage extends StatefulWidget {
   final bool roundUp;
@@ -139,12 +140,13 @@ class _SettingsPageState extends State<SettingsPage> {
                         const Spacer(),
                         const Text(
                           "English",
-                          style: TextStyle(color: CupertinoColors.inactiveGray)
+                          style: TextStyle(color: Color.fromARGB(255, 126, 126, 126))
                         ),
                         const SizedBox(width: 5),
-                        Icon(
-                          CupertinoIcons.right_chevron,
-                          color: Theme.of(context).cardColor,
+                        const Icon(
+                          CupertinoIcons.chevron_right,
+                          color: Color.fromARGB(255, 126, 126, 126),
+                          size: 15,
                         ),
                         const SizedBox(width: 8),
                       ],
@@ -296,40 +298,52 @@ class _SettingsPageState extends State<SettingsPage> {
           const SizedBox(height: 6),
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
-            child: Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color:Theme.of(context).primaryColor,
-              ),
-              child: Column(
-                children: [
-                  Container(
-                    alignment: Alignment.center,
-                    width: double.infinity,
-                    height: 40,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const SizedBox(width: 12),
-                        Icon(
-                          CupertinoIcons.creditcard,
-                          color: Theme.of(context).cardColor,
-                        ),
-                        const SizedBox(width: 12),
-                        Text("Support Count Days",
-                        style: Theme.of(context).textTheme.bodySmall),
-                        const Spacer(),
-                        Icon(
-                          CupertinoIcons.right_chevron,
-                          color: Theme.of(context).cardColor,
-                        ),
-                        const SizedBox(width: 8),
-                      ],
-                    ),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SupportMe()
                   ),
-                ],
+                );
+              },
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Theme.of(context).primaryColor,
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      alignment: Alignment.center,
+                      width: double.infinity,
+                      height: 40,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const SizedBox(width: 12),
+                          Icon(
+                            Icons.credit_card,
+                            color: Theme.of(context).cardColor,
+                          ),
+                          const SizedBox(width: 12),
+                          Text(
+                            "Support Count Days",
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                          const Spacer(),
+                          const Icon(
+                            Icons.chevron_right,
+                            color: Color.fromARGB(255, 126, 126, 126),
+                            size: 15,
+                          ),
+                          const SizedBox(width: 8),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

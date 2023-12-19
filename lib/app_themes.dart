@@ -58,6 +58,7 @@ class AppThemes {
     return TextTheme(
       bodySmall: TextStyle(
         color: textColor,
+        fontSize: 15
       ),
     );
   }

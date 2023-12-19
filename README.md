@@ -79,15 +79,18 @@ To install the app on your iPhone, you will need a computer running MacOS with i
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-<!-- Please make sure to update tests as appropriate. -->
-
 ## Project Status
 **Project Status:** Completed, but additional features will be rolling out in the coming releases.
 
 ## Room for Improvement
 
 To-do:
-  * Implement a settings page by adding options for language change and theme change.
+  * Create a buy me a coffie page with confetti
+  * Add support for polish language
+  * Add support for system-theme change
+  * Support notifications
+  * Support widgets
+  * Possibly in the distance future add support for more timers
 
 
 ## License

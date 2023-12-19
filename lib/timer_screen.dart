@@ -485,7 +485,7 @@ Widget build(BuildContext context) {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        backgroundColor: Theme.of(context).canvasColor,),
+                        backgroundColor: Theme.of(context).canvasColor),
                     child: const Text(
                       'Set to Now',
                       textAlign: TextAlign.center,
