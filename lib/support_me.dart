@@ -65,17 +65,17 @@ class _SupportMeState extends State<SupportMe> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center, // Center the text horizontally
-            children: const [
-              SizedBox(height: 20),
-              Text(
+            children: [
+              const SizedBox(height: 20),
+              const Text(
                 '\u{1F31F} Hey there! Enjoying the app? \u{1F31F}',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 15),
-              Text(
+              const SizedBox(height: 15),
+              const Text(
                 "I'm a student who poured a lot of love and effort into creating this app for you. If you find it useful, consider supporting me with a small tip. Every bit helps me continue developing and improving this app for you. \u{2764}",
                 style: TextStyle(
                   fontSize: 16,
@@ -85,8 +85,8 @@ class _SupportMeState extends State<SupportMe> {
                 textAlign: TextAlign.center,
 
               ),
-              SizedBox(height: 30),
-              Text(
+              const SizedBox(height: 30),
+              const Text(
                 "\u{1F4A1} How to tip:",
                 style: TextStyle(
                   fontSize: 20,
@@ -94,8 +94,8 @@ class _SupportMeState extends State<SupportMe> {
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 15),
-              Text(
+              const SizedBox(height: 15),
+              const Text(
                 "1. Tap the amount you would like to donate\n2. Confirm the purchase\n3. And that's it! \u{2728}",
                 style: TextStyle(
                   fontSize: 16,
@@ -104,13 +104,75 @@ class _SupportMeState extends State<SupportMe> {
                 ),
                 textAlign: TextAlign.left,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               SizedBox(
-                width: 300.0,
+                height: 40,
+                width: 360,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "   \u{1F4B8} Small Tip",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).cardColor,
+                      ),
+                    ),
+                  ),
+                ),
               ),
-              SizedBox(height: 20),
+                            const SizedBox(height: 20),
+              SizedBox(
+                height: 40,
+                width: 360,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "   \u{1F4B0} Medium Tip",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).cardColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+                            const SizedBox(height: 20),
+              SizedBox(
+                height: 40,
+                width: 360,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "   \u{1F911} Big Tip!",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).cardColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
               // Tutaj będzie guzik
-              Text(
+              const Text(
                 "Your support means the world to me. Thank you for being part of this journey!",
                 style: TextStyle(
                   fontSize: 16,
@@ -119,8 +181,8 @@ class _SupportMeState extends State<SupportMe> {
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 15),
-              Text(
+              const SizedBox(height: 15),
+              const Text(
                 "Happy counting! \u{1F4C6}",
                 style: TextStyle(
                   fontSize: 16,
