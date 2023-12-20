@@ -107,7 +107,8 @@ class _SettingsPageState extends State<SettingsPage> {
       appBar: AppBar(
         toolbarHeight: 35,
       ),
-      body: Column(
+      body: SingleChildScrollView(
+      child: Column(
         children: [
           const Padding(
             padding: EdgeInsets.only(left: 20),
@@ -247,16 +248,6 @@ class _SettingsPageState extends State<SettingsPage> {
                         Text("Appearance",
                         style: Theme.of(context).textTheme.bodySmall),
                         const Spacer(),
-                        // CupertinoSwitch(
-                        //   value: theme,
-                        //   onChanged: (val) {
-                        //     setState(() {
-                        //       theme = val;
-                        //       widget.updateTheme(theme);
-                        //       _saveThemeValue(theme);
-                        //     });
-                        //   },
-                        // ),
                         DropdownButton(
                           borderRadius: const BorderRadius.all(Radius.circular(10)),
                           value: widget.theme,
@@ -352,12 +343,14 @@ class _SettingsPageState extends State<SettingsPage> {
                   borderRadius: BorderRadius.circular(10),
                   color: Theme.of(context).primaryColor,
                 ),
+                //
                 child: Column(
                   children: [
+                    const SizedBox(height: 5,),
                     Container(
                       alignment: Alignment.center,
                       width: double.infinity,
-                      height: 40,
+                      height: 35,
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -382,39 +375,47 @@ class _SettingsPageState extends State<SettingsPage> {
                         ],
                       ),
                     ),
+                    const Divider(
+                    indent: 45,
+                    thickness: 1,),
+                    Container(
+                    alignment: Alignment.center,
+                    width: double.infinity,
+                    height: 35,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const SizedBox(width: 12),
+                        Icon(
+                          CupertinoIcons.gauge,
+                          color: Theme.of(context).cardColor,
+                        ),
+                        const SizedBox(width: 12),
+                        Text("Version",
+                        style: Theme.of(context).textTheme.bodySmall),
+                        const Spacer(),
+                        const Text(
+                          "v1.1.0",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 126, 126, 126),
+                            fontSize: 15)
+                        ),
+                        const SizedBox(width: 15),
+                        const SizedBox(width: 8),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 5,)
                   ],
                 ),
               ),
             ),
           ),
-            Container(
-              alignment: Alignment.bottomCenter,
-              height: 40,
-              width: 400,
-              margin: const EdgeInsets.only(top: 224),
-              child: Column(
-                children: const [
-                  Text(
-                    'v1.1.0',
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 3),
-                  Text(
-                    'GitHub: Tombiczek',
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                ],
-              ),
-            ),
           ],
         ),
-      )
+      ),
+    )
     );
   }
 }

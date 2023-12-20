@@ -66,7 +66,6 @@ double calculatePercentage() {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: LinearPercentIndicator(
-              width: 373,
               clipLinearGradient: true,
               linearGradient: LinearGradient(
                 colors: widget.orange ? [

@@ -149,6 +149,7 @@ class _StartButtonState extends State<StartButton> {
   }
   Future _bottomSheetPopUp(BuildContext context) async {
     final double keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
+    final double safeAreaHeight = MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
     return showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(
@@ -158,7 +159,7 @@ class _StartButtonState extends State<StartButton> {
       isScrollControlled: true,
       builder: (context) => SingleChildScrollView(
         child: Container(
-          height: 785 - keyboardHeight,
+          height: safeAreaHeight - keyboardHeight,
            padding: const EdgeInsets.all(5),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,

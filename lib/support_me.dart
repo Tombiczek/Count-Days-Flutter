@@ -58,7 +58,8 @@ class _SupportMeState extends State<SupportMe> {
           ),
         ],
       ),
-      body: Container(
+      body: SingleChildScrollView(
+      child: Container(
         margin: const EdgeInsets.only(left: 20, right: 20),
         alignment: Alignment.center,
         child: Center(
@@ -70,7 +71,7 @@ class _SupportMeState extends State<SupportMe> {
               const Text(
                 '\u{1F31F} Hey there! Enjoying the app? \u{1F31F}',
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 19,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -89,7 +90,7 @@ class _SupportMeState extends State<SupportMe> {
               const Text(
                 "\u{1F4A1} How to tip:",
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 19,
                   fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.center,
@@ -197,7 +198,7 @@ class _SupportMeState extends State<SupportMe> {
       ),
 
 
-      
+      )
     );
   }
 }
