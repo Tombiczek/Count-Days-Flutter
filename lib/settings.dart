@@ -6,8 +6,8 @@ import 'package:licznik_v1/support_me.dart';
 class SettingsPage extends StatefulWidget {
   final bool roundUp;
   final Function(bool) updateRoundUp;
-  final bool theme;
-  final Function(bool) updateTheme;
+  final String theme;
+  final Function(String) updateTheme;
   final bool orange;
   final Function(bool) updateOrange;
 
@@ -32,11 +32,11 @@ class _SettingsPageState extends State<SettingsPage> {
     super.initState();
     _loadRoundUpValue();
     _loadOrangeValue();
-    _loadThemeValue();
+    _loadTheme();
   }
 
   late bool roundUp = widget.roundUp;
-  late bool theme = widget.theme;
+  late String theme = widget.theme;
   late bool orange = widget.orange;
 
 
@@ -50,9 +50,19 @@ class _SettingsPageState extends State<SettingsPage> {
     }
   }
 
-  Future<void> _loadThemeValue() async {
-    bool? loadedTheme = await SaveStateUtility.loadThemeValue();
-    if (loadedTheme != null) {
+  // Future<void> _loadThemeValue() async {
+  //   bool? loadedTheme = await SaveStateUtility.loadThemeValue();
+  //   if (loadedTheme != null) {
+  //     setState(() {
+  //       theme = loadedTheme;
+  //     });
+  //     widget.updateTheme(loadedTheme);
+  //   }
+  // }
+
+  Future<void> _loadTheme() async {
+    String? loadedTheme = await SaveStateUtility.loadTheme();
+    if (loadedTheme !=null){
       setState(() {
         theme = loadedTheme;
       });
@@ -74,13 +84,20 @@ class _SettingsPageState extends State<SettingsPage> {
     await SaveStateUtility.saveRoundUpValue(value);
   }
 
-  Future<void> _saveThemeValue(bool value) async {
-    await SaveStateUtility.saveThemeValue(value);
+  Future<void> _saveTheme(String theme) async {
+    await SaveStateUtility.saveTheme(theme);
   }
 
   Future<void> _saveOrangeValue(bool value) async {
     await SaveStateUtility.saveOrangeValue(value);
   }
+  
+  // List of items in our dropdown menu 
+  var items = [     
+    'Light', 
+    'Dark', 
+    'System'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -144,9 +161,9 @@ class _SettingsPageState extends State<SettingsPage> {
                         ),
                         const SizedBox(width: 5),
                         const Icon(
-                          CupertinoIcons.chevron_right,
-                          color: Color.fromARGB(255, 126, 126, 126),
-                          size: 15,
+                            Icons.chevron_right,
+                            color: Color.fromARGB(255, 126, 126, 126),
+                            size: 20,
                         ),
                         const SizedBox(width: 8),
                       ],
@@ -195,7 +212,7 @@ class _SettingsPageState extends State<SettingsPage> {
           const Align(alignment: Alignment.topLeft,
           child: Padding(
             padding: EdgeInsets.only(left: 28),
-          child: Text("Appearance",
+          child: Text("Theme",
               style: TextStyle(fontSize: 14, 
               fontWeight: FontWeight.normal, 
               color: Color.fromARGB(255, 134, 134, 141)
@@ -227,18 +244,39 @@ class _SettingsPageState extends State<SettingsPage> {
                           color: Theme.of(context).cardColor,
                         ),
                         const SizedBox(width: 12),
-                        Text("Light Mode",
+                        Text("Appearance",
                         style: Theme.of(context).textTheme.bodySmall),
                         const Spacer(),
-                        CupertinoSwitch(
-                          value: theme,
-                          onChanged: (val) {
-                            setState(() {
-                              theme = val;
-                              widget.updateTheme(theme);
-                              _saveThemeValue(theme);
-                            });
+                        // CupertinoSwitch(
+                        //   value: theme,
+                        //   onChanged: (val) {
+                        //     setState(() {
+                        //       theme = val;
+                        //       widget.updateTheme(theme);
+                        //       _saveThemeValue(theme);
+                        //     });
+                        //   },
+                        // ),
+                        DropdownButton(
+                          borderRadius: const BorderRadius.all(Radius.circular(10)),
+                          value: widget.theme,
+                          iconSize: 18,
+                          alignment: Alignment.centerRight,
+                          icon: const Icon(CupertinoIcons.chevron_up_chevron_down),
+                          items: items.map((String items) { 
+                            return DropdownMenuItem(
+                              value: items, 
+                              child: Text(items), 
+                            ); 
+                          }).toList(), 
+                          onChanged: (String? newValue) {  
+                            setState(() { 
+                              widget.updateTheme(newValue!);
+                              _saveTheme(newValue);
+
+                            }); 
                           },
+                          underline: Container()
                         ),
                         const SizedBox(width: 8),
                       ],
@@ -261,7 +299,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           color: Theme.of(context).cardColor,
                         ),
                         const SizedBox(width: 12),
-                        Text("Orange Theme",
+                        Text("Orange Accents",
                         style: Theme.of(context).textTheme.bodySmall),
                         const Spacer(),
                         CupertinoSwitch(
@@ -302,7 +340,9 @@ class _SettingsPageState extends State<SettingsPage> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const SupportMe()
+                  MaterialPageRoute(builder: (context) => SupportMe(
+                    orange: widget.orange,
+                  )
                   ),
                 );
               },
@@ -336,7 +376,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           const Icon(
                             Icons.chevron_right,
                             color: Color.fromARGB(255, 126, 126, 126),
-                            size: 15,
+                            size: 20,
                           ),
                           const SizedBox(width: 8),
                         ],
@@ -347,33 +387,34 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
           ),
-          Container(
-            alignment: Alignment.bottomCenter,
-            height: 40,
-            width: 400,
-            margin: const EdgeInsets.only(top: 224),
-            child: Column(
-              children: const [
-                Text(
-                  'v1.1.0',
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.bold,
+            Container(
+              alignment: Alignment.bottomCenter,
+              height: 40,
+              width: 400,
+              margin: const EdgeInsets.only(top: 224),
+              child: Column(
+                children: const [
+                  Text(
+                    'v1.1.0',
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                SizedBox(height: 3),
-                Text(
-                  'GitHub: Tombiczek',
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.normal,
+                  SizedBox(height: 3),
+                  Text(
+                    'GitHub: Tombiczek',
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.normal,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
-      ),)
+          ],
+        ),
+      )
     );
   }
 }

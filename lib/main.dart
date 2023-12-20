@@ -18,7 +18,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   int myIndex = 0;
   bool roundUp = true;
-  bool theme = false;
+  String theme = 'Dark';
   bool orange = false;
 
   @override
@@ -41,7 +41,11 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       theme: AppThemes.lightTheme,
       darkTheme: AppThemes.darkTheme,
-      themeMode: theme ? ThemeMode.light : ThemeMode.dark,
+      themeMode: theme == "Dark"
+          ? ThemeMode.dark
+          : theme == "Light"
+              ? ThemeMode.light
+              : ThemeMode.system,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: IndexedStack(
@@ -83,7 +87,7 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  void updateTheme(bool newValue){
+  void updateTheme(String newValue){
     setState(() {
       theme = newValue;
     });

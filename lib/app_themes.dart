@@ -17,6 +17,7 @@ class AppThemes {
     ),
     appBarTheme: const AppBarTheme(
       backgroundColor: Color.fromARGB(255, 242, 242, 247), 
+      shadowColor: Colors.transparent,
       titleTextStyle: TextStyle(
         color: Colors.black, 
         fontSize: 17, 
@@ -43,7 +44,8 @@ class AppThemes {
       backgroundColor: Color.fromARGB(255, 0, 0, 0)
     ),
     appBarTheme: const AppBarTheme(
-      backgroundColor: Color.fromARGB(255, 0, 0, 0), 
+      backgroundColor: Color.fromARGB(255, 0, 0, 0),
+      shadowColor: Colors.transparent,
       titleTextStyle: TextStyle(
         color: Colors.white, 
         fontSize: 17, 

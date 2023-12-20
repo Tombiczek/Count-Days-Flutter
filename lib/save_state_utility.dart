@@ -80,15 +80,15 @@ class SaveStateUtility {
 
   // THEME: SAVE, LOAD
 
-  static Future<void> saveThemeValue(bool value) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  prefs.setBool('theme', value);
+  static Future<void> saveTheme(String theme) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('theme', theme);
   }
 
-  static Future<bool?> loadThemeValue() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  bool? boolean = prefs.getBool('theme');
-  return boolean;
+  static Future<String?> loadTheme() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? themeString = prefs.getString('theme');
+    return themeString;
   }
 
 
