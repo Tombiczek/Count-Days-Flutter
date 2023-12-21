@@ -69,7 +69,7 @@ class _SupportMeState extends State<SupportMe> {
             children: [
               const SizedBox(height: 20),
               const Text(
-                '\u{1F31F} Hey there! Enjoying the app? \u{1F31F}',
+                '\u{1F31F}Hey there! Enjoying the app?\u{1F31F}',
                 style: TextStyle(
                   fontSize: 19,
                   fontWeight: FontWeight.bold,
@@ -88,7 +88,7 @@ class _SupportMeState extends State<SupportMe> {
               ),
               const SizedBox(height: 30),
               const Text(
-                "\u{1F4A1} How to tip:",
+                "\u{1F4A1}How to tip:",
                 style: TextStyle(
                   fontSize: 19,
                   fontWeight: FontWeight.bold,
@@ -196,8 +196,6 @@ class _SupportMeState extends State<SupportMe> {
           ),
         ),
       ),
-
-
       )
     );
   }

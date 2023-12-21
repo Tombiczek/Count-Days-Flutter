@@ -327,16 +327,6 @@ class _SettingsPageState extends State<SettingsPage> {
           const SizedBox(height: 6),
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SupportMe(
-                    orange: widget.orange,
-                  )
-                  ),
-                );
-              },
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
@@ -347,7 +337,17 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: Column(
                   children: [
                     const SizedBox(height: 5,),
-                    Container(
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SupportMe(
+                            orange: widget.orange,
+                            )
+                          ),
+                        );
+                      },
+                    child: Container(
                       alignment: Alignment.center,
                       width: double.infinity,
                       height: 35,
@@ -375,6 +375,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         ],
                       ),
                     ),
+                  ),
                     const Divider(
                     indent: 45,
                     thickness: 1,),
@@ -411,7 +412,6 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
               ),
             ),
-          ),
           ],
         ),
       ),
