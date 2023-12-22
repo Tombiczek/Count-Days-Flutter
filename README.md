@@ -21,8 +21,7 @@
   * [Room for Improvement](#room-for-improvement)
   * [License](#license)
 
-# Licznik App in Dart
-"Licznik" is Polish for counter. <br>
+# Count Days App in Dart
 
 The main aim of this application is to count time to a set date.
 
@@ -34,10 +33,10 @@ The project is created with:
   * Xcode 15.0.1
   * VS Code 1.84.2
 
-And tested on iPhone 15 Pro (iOS 17.2).
+And tested on various models running iOS < 17.0.
 
 ## What is this?
-The only feature of this app is counting to a given date, which has to be in the future. You can add only one timer, you are able to give it a name and see how much time has passed based on a percentage value. If the title field is left empty, there will be given a default name to the timer representing a date to which the countdown is set. Plus you are now able to set a custom start date.
+The only feature of this app is counting to a given date, which has to be in the future. You can add only one timer, you are able to give it a name and see how much time has passed based on a percentage value. If the title field is left empty, there will be given a default name to the timer representing a date to which the countdown is set. Plus you are now able to set a custom start date, and change available themes.
 
 ### Start Screen
 To add the timer, you only have to tap somewhere on the screen.<br>
@@ -58,7 +57,12 @@ Deleting the timer will get you back to the start screen. <br>
 
 ### Timer Set With Title
 Here we can see that the title was set. <br>
-<img src="screenshots/timer_w_title.png" width="300"/>
+Also below are the different combinations of different themes available in this verison. Note that changing the theme affects every page in this application.
+<p align="center">
+  <img src="screenshots/timer_w_title.png" width="200" />
+  <img src="screenshots/light_mode.png" width="200" /> 
+  <img src="screenshots/light_orange.png" width="200" />
+</p>
 
 ### Set a Start Date
 In this setting you can actually choose a custom start date, if you want to get acurate percetage and forgot to start your timer earlier. <br>
@@ -70,14 +74,20 @@ This is what appears to the user after the timer has finished <br>
 <img src="screenshots/timer_finish.png" width="300"/>
 
 ### Settings
-The setting page is not yet implemented.<br>
+The setting allows you to customize how you want to see the number of days left (rounded up or not). It lets you change the theme between light, dark, and system. It also allows you to change the accent color from blue to orange. This will also have an effect on the percentage bar gradient. Below, there is a button leading to the support count days page, inside which you can leave a small tip for me (the developer).<br>
 <img src="screenshots/Settings.png" width="300"/>
 
 ## Install
 To install the app on your iPhone, you will need a computer running MacOS with installed Flutter, CocoaPods, and Xcode. Additionally, you will need an Apple ID or an Apple Developer account. More detailed instructions on how to do it are [here](https://www.geeksforgeeks.org/how-to-install-flutter-app-on-ios/).
 
 ## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Thank you for your interest in contributing to this project. However, please note that this software is not open source, and contributions are not accepted through pull requests.
+
+If you encounter issues or have suggestions, feel free to open an issue to discuss them. For any major changes or feature requests, please contact the project owner or maintainers directly.
+
+This project is commercially licensed, and reproduction, distribution, or modification of the code for public or private use is strictly prohibited without explicit permission. For inquiries about licensing, support, or other matters, please contact me.
+
 
 ## Project Status
 **Project Status:** Completed, but additional features will be rolling out in the coming releases.
@@ -85,13 +95,9 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ## Room for Improvement
 
 To-do:
-  * Create a buy me a coffie page with confetti
+  * Make Tip Buttons work
   * Add support for polish language
   * Add support for system-theme change
   * Support notifications
   * Support widgets
   * Possibly in the distance future add support for more timers
-
-
-## License
-[GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/)

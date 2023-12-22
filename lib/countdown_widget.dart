@@ -44,7 +44,7 @@ class _CountdownWidgetState extends State<CountdownWidget> {
     super.initState();
       remainingTime = widget.dateInit.difference(DateTime.now());
       totalTime = widget.dateInit.difference(widget.dateStart);
-    // remainingTime = DateTime(2023, 12, 12, 14, 32, 45).difference(DateTime.now());
+    // DateTime(2023, 12, 12, 14, 32, 45)
     _timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) {
       setState(() {
         remainingTime = widget.dateInit.difference(DateTime.now());
