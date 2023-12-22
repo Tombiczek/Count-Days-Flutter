@@ -58,7 +58,7 @@ Deleting the timer will get you back to the start screen. <br>
 ### Timer Set With Title
 Here we can see that the title was set. <br>
 Also below are the different combinations of different themes available in this verison. Note that changing the theme affects every page in this application.
-<p align="center">
+<p align="left">
   <img src="screenshots/timer_w_title.png" width="200" />
   <img src="screenshots/light_mode.png" width="200" /> 
   <img src="screenshots/light_orange.png" width="200" />
