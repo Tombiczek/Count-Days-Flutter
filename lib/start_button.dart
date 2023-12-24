@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:licznik_v1/save_state_utility.dart';
+import 'package:licznik_v1/app_themes.dart';
 
 
 
@@ -179,7 +180,7 @@ class _StartButtonState extends State<StartButton> {
                         'Cancel',
                         style: TextStyle(
                           fontSize: 17,
-                          color: widget.orange ? CupertinoColors.activeOrange : Colors.blue,
+                          color: widget.orange ? CupertinoColors.activeOrange : AppThemes.getAccentColor(),
                           fontWeight: FontWeight.normal,
                         ),
                       ),
@@ -200,7 +201,7 @@ class _StartButtonState extends State<StartButton> {
                         'Done',
                         style: TextStyle(
                           fontSize: 17,
-                          color: widget.orange ? CupertinoColors.activeOrange : Colors.blue,
+                          color: widget.orange ? CupertinoColors.activeOrange : AppThemes.getAccentColor(),
                           fontWeight: FontWeight.bold,
                         ),
                       ),

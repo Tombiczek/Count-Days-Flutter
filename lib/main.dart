@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
           unselectedFontSize: 14,
           showSelectedLabels: true,
           showUnselectedLabels: true,
-          selectedItemColor: orange ? CupertinoColors.activeOrange : const Color.fromARGB(255, 0, 122, 255),
+          selectedItemColor: orange ? CupertinoColors.activeOrange : AppThemes.getAccentColor(),
           unselectedItemColor: const Color.fromARGB(255, 126, 126, 126),
           onTap: (index) {
             setState(() {
