@@ -66,7 +66,7 @@ class AppThemes {
   }
 
   static Color getAccentColor() {
-    return const Color.fromARGB(255, 0, 168, 107);
-    // return Colors.blue;
+    // return const Color.fromARGB(255, 0, 168, 107);
+    return Colors.blue;
   }
 }

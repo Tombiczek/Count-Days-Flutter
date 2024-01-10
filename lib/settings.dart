@@ -397,7 +397,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         style: Theme.of(context).textTheme.bodySmall),
                         const Spacer(),
                         const Text(
-                          "v1.1.0-Maciek's Edition\u{1F62E}\u{200D}\u{1F4A8}",
+                          "v1.1.0",
                           style: TextStyle(
                             color: Color.fromARGB(255, 126, 126, 126),
                             fontSize: 15)
