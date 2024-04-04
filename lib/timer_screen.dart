@@ -7,6 +7,7 @@ import 'package:licznik_v1/countdown_widget.dart';
 import 'package:licznik_v1/percent_widget.dart';
 import 'package:licznik_v1/save_state_utility.dart';
 import 'package:licznik_v1/alternative_units_widget.dart';
+import 'package:licznik_v1/app_themes.dart';
 
 class Timer extends StatefulWidget {
   final Function(bool) onShowBigButtonChanged;
@@ -138,7 +139,7 @@ Widget build(BuildContext context) {
                     'Edit',
                     style: TextStyle(
                       fontSize: 17,
-                      color: widget.orange ? CupertinoColors.activeOrange : Colors.blue,
+                      color: widget.orange ? CupertinoColors.activeOrange : AppThemes.getAccentColor(),
                       fontWeight: FontWeight.normal,
                     ),
                   ),
@@ -157,7 +158,7 @@ Widget build(BuildContext context) {
                     'Start Date',
                     style: TextStyle(
                       fontSize: 17,
-                      color: widget.orange ? CupertinoColors.activeOrange : Colors.blue,
+                      color: widget.orange ? CupertinoColors.activeOrange : AppThemes.getAccentColor(),
                       fontWeight: FontWeight.normal,
                     ),
                   ),
@@ -276,7 +277,7 @@ Widget build(BuildContext context) {
                       'Cancel',
                       style: TextStyle(
                         fontSize: 17,
-                        color: widget.orange ? CupertinoColors.activeOrange : Colors.blue,
+                        color: widget.orange ? CupertinoColors.activeOrange : AppThemes.getAccentColor(),
                         fontWeight: FontWeight.normal,
                       ),
                     ),
@@ -298,7 +299,7 @@ Widget build(BuildContext context) {
                       'Done',
                       style: TextStyle(
                         fontSize: 17,
-                        color: widget.orange ? CupertinoColors.activeOrange : Colors.blue,
+                        color: widget.orange ? CupertinoColors.activeOrange : AppThemes.getAccentColor(),
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -418,7 +419,7 @@ Widget build(BuildContext context) {
                       'Cancel',
                       style: TextStyle(
                         fontSize: 17,
-                        color: widget.orange ? CupertinoColors.activeOrange : Colors.blue,
+                        color: widget.orange ? CupertinoColors.activeOrange : AppThemes.getAccentColor(),
                         fontWeight: FontWeight.normal,
                       ),
                     ),
@@ -434,7 +435,7 @@ Widget build(BuildContext context) {
                       'Done',
                       style: TextStyle(
                         fontSize: 17,
-                        color: widget.orange ? CupertinoColors.activeOrange : Colors.blue,
+                        color: widget.orange ? CupertinoColors.activeOrange : AppThemes.getAccentColor(),
                         fontWeight: FontWeight.bold,
                       ),
                     ),

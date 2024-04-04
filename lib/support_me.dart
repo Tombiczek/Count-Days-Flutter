@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:licznik_v1/app_themes.dart';
 
 class SupportMe extends StatefulWidget {
   final bool orange;
@@ -39,12 +40,12 @@ class _SupportMeState extends State<SupportMe> {
                         children: <Widget>[
                           Icon(
                             CupertinoIcons.left_chevron,
-                            color: widget.orange ? CupertinoColors.activeOrange : Colors.blue,
+                            color: widget.orange ? CupertinoColors.activeOrange : AppThemes.getAccentColor(),
                           ),
                           Text(
                             "Settings",
                             style: TextStyle(
-                              color: widget.orange ? CupertinoColors.activeOrange : Colors.blue,
+                              color: widget.orange ? CupertinoColors.activeOrange : AppThemes.getAccentColor(),
                               fontSize: 17
                             ),
                           ),

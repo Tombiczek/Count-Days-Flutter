@@ -77,12 +77,18 @@ double calculatePercentage() {
                   Colors.indigo,
                   Colors.purple
                 ] : const [
-                Color.fromARGB(255, 0, 31, 63),    // Dark Blue
-                Color.fromARGB(255, 0, 90, 156),   // Royal Blue
-                Color.fromARGB(255, 0, 116, 217),  // Deep Sky Blue
-                Color.fromARGB(255, 0, 168, 232),  // Sky Blue
-                Color.fromARGB(255, 91, 192, 235), // Baby Blue
-                Color.fromARGB(255, 174, 223, 247) // Powder Blue
+                  // Color.fromARGB(255, 0, 63, 40),      // Darker Greenish Cyan
+                  // Color.fromARGB(255, 0, 90, 57),      // Dark Greenish Cyan
+                  // Color.fromARGB(255, 0, 120, 76),     // Jungle Green
+                  // Color.fromARGB(255, 0, 150, 95),     // Specified RGB Color (in the middle)
+                  // Color.fromARGB(255, 0, 170, 110),    // Fresh Green
+                  // Color.fromARGB(255, 144, 214, 172)   // Light Mint Green
+                  Color.fromARGB(255, 0, 31, 63),    // Dark Blue
+                  Color.fromARGB(255, 0, 90, 156),   // Royal Blue
+                  Color.fromARGB(255, 0, 116, 217),  // Deep Sky Blue
+                  Color.fromARGB(255, 0, 168, 232),  // Sky Blue
+                  Color.fromARGB(255, 91, 192, 235), // Baby Blue
+                  Color.fromARGB(255, 174, 223, 247) // Powder Blue
                 ],
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,),

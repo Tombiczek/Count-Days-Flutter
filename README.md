@@ -23,9 +23,11 @@
 
 # Count Days App in Dart
 
-The main aim of this application is to count time to a set date.
+This app's main purpose is to keep track of how many days are left until a certain date.
 
-I created this app as an exercise to learn more about Flutter and iOS app development.
+I made this app to get better at using Flutter and making apps for iPhones.
+
+Initially, the app was a simple take on my idea. Working with Flutter, I encountered difficulties incorporating native iOS home screen widgets and in-app purchases, as well as giving the app a genuine iPhone-friendly feel. This led me to rebuild the app using SwiftUI. The revamped version is now available on the App Store, including all the features I had envisioned for the original. If you're curious, you can take a look [here](https://apps.apple.com/pl/app/count-days-simple/id6479526942).
 
 ## Technologies
 The project is created with:
@@ -97,7 +99,6 @@ This project is commercially licensed, and reproduction, distribution, or modifi
 To-do:
   * Make Tip Buttons work
   * Add support for polish language
-  * Add support for system-theme change
   * Support notifications
   * Support widgets
   * Possibly in the distance future add support for more timers
