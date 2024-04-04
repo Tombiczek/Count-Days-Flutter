@@ -27,7 +27,7 @@ This app's main purpose is to keep track of how many days are left until a certa
 
 I made this app to get better at using Flutter and making apps for iPhones.
 
-Initially, the app was a simple take on my idea. Working with Flutter, I encountered difficulties incorporating native iOS home screen widgets and in-app purchases, as well as giving the app a genuine iPhone-friendly feel. This led me to rebuild the app using SwiftUI. The revamped version is now available on the App Store, including all the features I had envisioned for the original. If you're curious, you can take a look [here](https://apps.apple.com/pl/app/count-days-simple/id6479526942).
+Initially, the app was a simple and basic take on a broader idea to make a really good countdown app. But while working with Flutter, I encountered difficulties incorporating native iOS home screen widgets and in-app purchases, as well as giving the app a genuine iPhone-friendly feel. This led me to rebuild the app using SwiftUI. The revamped version is now available on the App Store, including all the features I had envisioned for the original. If you're curious, you can take a look [here](https://apps.apple.com/pl/app/count-days-simple/id6479526942).
 
 ## Technologies
 The project is created with:
